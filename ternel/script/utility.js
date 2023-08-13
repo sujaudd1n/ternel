@@ -32,6 +32,7 @@ class User {
       for (let char of text) {
         para.append(char);
           await new Promise(res => setTimeout(res, 10));
+          //mv
       }
     }
   }
@@ -111,6 +112,7 @@ class Bot extends User {
       for (let char of text) {
         target.append(char);
           await new Promise(res => setTimeout(res, 10));
+          //mv
       }
   }
 
@@ -194,7 +196,6 @@ class Bot extends User {
     });
 
     let url = "https://makemeapassword.ligos.net/api/v1/alphanumeric/json?";
-
     if ("-s" in args) url += "sym=true&";
     if ("-l" in args) url += `l=${args["-l"]}&`;
     if ("-c" in args) url += `c=${args["-c"]}&`;
@@ -311,7 +312,8 @@ const Setting = {
   themes: ["dark", "light", "red", "blue", "green"],
 
   initialize() {
-    if (!localStorage.getItem("theme")) localStorage.setItem("theme", "dark");
+    if (!localStorage.getItem("theme"))
+      localStorage.setItem("theme", "dark");
     this.set_theme(localStorage.getItem("theme"));
   },
 
@@ -320,5 +322,9 @@ const Setting = {
       localStorage.setItem("theme", theme);
       document.body.setAttribute("class", theme);
     }
+      else
+      {
+          throw new Error("error")
+      }
   },
 };

@@ -1,0 +1,9 @@
+{
+  "devDependencies": {
+    "jest": "^29.6.2",
+    "jsdoc": "^4.0.2"
+  },
+  "scripts": {
+    "test": "jest"
+  }
+}
