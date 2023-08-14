@@ -8,12 +8,12 @@ const Password = {
 
     /**
      * Parse a password description
-     *
      * @param {string} password_description - Specify the requiremets
      *                                        of passwords ouput.
      * -s:boolean for symbol
      * -l:number for length
-     * -q:number for quantity
+     * -q:number for quantity 
+     * 
      */
     async manage(password_description) {
         const args = arg(password_description, {
