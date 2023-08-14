@@ -1,10 +1,11 @@
-const arg = require("./arg/index");
+const arg = require("../arg/index");
 
 const Password = {
     name: "pass",
     SYMBOL_FLAG: "-s",
     LENGTH_FLAG: "-l",
     QUANTITY_FLAG: "-q",
+
     /**
      * Parse a password description
      *
@@ -40,7 +41,7 @@ const Password = {
     /**
      *
      * @param {url} url - request to url
-     * returns array of password
+     * @returns array of password
      */
     async request_password(url) {
         const res = await fetch(url);
