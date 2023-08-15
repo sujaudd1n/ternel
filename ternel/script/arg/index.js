@@ -193,4 +193,4 @@ arg.COUNT = arg.flag((v, name, existingCount) => (existingCount || 0) + 1);
 // Expose error class
 arg.ArgError = ArgError;
 
-module.exports = arg;
+export {arg};
