@@ -14,3 +14,8 @@ select
     font-size: inherit;
     color: inherit;
 }
+
+li
+{
+    list-style-position: inside;
+}

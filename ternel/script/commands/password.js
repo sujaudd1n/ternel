@@ -1,10 +1,13 @@
-const arg = require("../arg/index");
+import { arg } from "../arg/index.js";
+import { Lists } from "../components/lists.js";
 
 const Password = {
     name: "pass",
+    description: "Password generator",
     SYMBOL_FLAG: "-s",
     LENGTH_FLAG: "-l",
     QUANTITY_FLAG: "-q",
+    render_element: Lists,
 
     /**
      * Parse a password description
@@ -12,8 +15,8 @@ const Password = {
      *                                        of passwords ouput.
      * -s:boolean for symbol
      * -l:number for length
-     * -q:number for quantity 
-     * 
+     * -q:number for quantity
+     *
      */
     async manage(password_description) {
         const args = arg(password_description, {
@@ -46,10 +49,10 @@ const Password = {
     async request_password(url) {
         const res = await fetch(url);
         const data = await res.json();
-        console.log(url)
-        console.log(data)
+        console.log(url);
+        console.log(data);
         return data["pws"];
     },
 };
 
-module.exports = Password;
+export { Password };

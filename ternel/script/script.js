@@ -1,33 +1,31 @@
+import { Password } from "./commands/password.js";
+import { Bot, User, Setting } from "./utility.js";
+
 const form = document.querySelector(".command__form");
 const input = document.querySelector("#command__text");
 const history = document.querySelector(".history");
 
 Setting.initialize();
+console.log(Password);
 
 const su = new User("su");
 const ternel = new Bot("Ternel");
 
 form.onsubmit = async (e) => {
-  e.preventDefault();
+    e.preventDefault();
 
-  const input_text = input.value;
-  su.append_node(input_text);
+    const input_text = input.value;
+    su.append_node(input_text);
 
-  if ((c = ternel.is_command(input_text))) {
-    if (c == Command.commands.C_HELP) ternel.help();
-    else if (c === Command.commands.C_COPYRIGHT) ternel.copyright();
-    else if (c === Command.commands.C_THEME) ternel.change_theme(input_text);
-    else if (c === Command.commands.C_WIKI) ternel.wiki(input_text);
-    else if (c === Command.commands.C_YTEMBED) ternel.ytembed(input_text);
-    else if (c === Command.commands.C_GOOGLE) Command.google(input_text);
-    else if (c === Command.commands.C_RANDOM_USER) ternel.random_user();
-    else if (c === Command.commands.C_IP) ternel.ip(input_text);
-    else if (c === Command.commands.C_CP) ternel.cp(input_text);
-    else if (c === Command.commands.C_ZIP) ternel.zip(input_text);
-    else if (c === Command.commands.C_PASSWORD) ternel.password(input_text);
-    else if (c === Command.commands.C_PIC) ternel.pic(input_text);
-    else if (c === Command.commands.C_MEME) ternel.meme();
-  }
+    const command = ternel.get_command(input_text);
+    const command_data = await command.manage(input_text);
+    const element = command.render_element.create_filled_element(
+        command.name,
+        command.description,
+        command_data
+    );
+    console.log(element);
+    ternel.append_node(element);
 
-  input.value = "";
+    input.value = "";
 };

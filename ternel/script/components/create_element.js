@@ -1,14 +1,12 @@
-function get_element(element, attributes={}, children=[])
-{
+function create_element(element, children = [], attributes = {}) {
     element = document.createElement(element);
 
     for (let attribute in attributes)
         element.setAttribute(attribute, attributes[attribute]);
 
-    for (let child of children)
-        element.append(child);
+    for (let child of children) element.append(child);
 
     return element;
 }
 
-module.exports = get_element;
+export { create_element };

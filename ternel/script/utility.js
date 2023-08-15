@@ -1,67 +1,74 @@
+import { Password } from "./commands/password.js";
+
+const COMMANDS = [Password];
+
 class User {
-  constructor(name) {
-    this.name = name;
-  }
+    constructor(name) {
+        this.name = name;
+    }
 
-  create_environment() {
-    const block = DOMF.append_history_block();
-    const title = block[1].children[0];
-    this.write_name(title);
-    return block[2];
-  }
+    create_environment() {
+        const block = DOMF.append_history_block();
+        const title = block[1].children[0];
+        this.write_name(title);
+        return block[2];
+    }
 
-  append_node(node) {
-    const content = this.create_environment();
-    content.append(node);
-  }
+    append_node(node) {
+        const content = this.create_environment();
+        content.append(node);
+    }
 
-  write_name(target) {
-    target.textContent = this.name;
-  }
+    write_name(target) {
+        target.textContent = this.name;
+    }
 
-  async write(texts) {
-    /*
+    async write(texts) {
+        /*
      texts: an array of texts.
     */
-    const content = this.create_environment();
-    for (let text of texts) {
-      const para = DOMF.get_element("p", [], {
-        class: "history__text",
-      });
-      content.append(para);
-      for (let char of text) {
-        para.append(char);
-          await new Promise(res => setTimeout(res, 10));
-          //mv
-      }
+        const content = this.create_environment();
+        for (let text of texts) {
+            const para = DOMF.get_element("p", [], {
+                class: "history__text",
+            });
+            content.append(para);
+            for (let char of text) {
+                para.append(char);
+                await new Promise((res) => setTimeout(res, 10));
+                //mv
+            }
+        }
     }
-  }
 
-  ytembed(text) {
-    const content = this.create_environment();
-    const splitted_text = text.split("=");
-    const iframe = DOMF.get_element(
-      "iframe",
-      ["Lol! Looks like your broswer doesn't support iframe."],
-      {
-        src:
-          "https://youtube.com/embed/" +
-          splitted_text[splitted_text.length - 1],
-        frameborder: 0,
-      }
-    );
-    content.append(iframe);
-  }
+    ytembed(text) {
+        const content = this.create_environment();
+        const splitted_text = text.split("=");
+        const iframe = DOMF.get_element(
+            "iframe",
+            ["Lol! Looks like your broswer doesn't support iframe."],
+            {
+                src:
+                    "https://youtube.com/embed/" +
+                    splitted_text[splitted_text.length - 1],
+                frameborder: 0,
+            }
+        );
+        content.append(iframe);
+    }
 }
 
 class Bot extends User {
-  is_command(text) {
-    const splitted_text = text.split(" ");
-    const first_word = splitted_text[0];
-    for (let k in Command.commands)
-      if (Command.commands[k] === first_word) return Command.commands[k];
-    return false;
-  }
+    get_command(text) {
+        const splitted_text = text.split(" ");
+        const first_word = splitted_text[0];
+        for (let command of COMMANDS) {
+            if (";" + command.name === first_word) return command;
+        }
+        return null;
+    }
+}
+/*
   help() {
     this.write([
       ";ct:  Change  theme.",
@@ -135,7 +142,6 @@ class Bot extends User {
   ip(text) {
     /*
     https://ipapi.co/api
-    */
     const splitted_text = text.split(" ");
     let url = null;
     if (splitted_text.length === 1) url = "https://ipapi.co/json";
@@ -239,92 +245,97 @@ class Bot extends User {
       });
   }
 }
+*/
 
 const DOMF = {
-  get_element(name = "div", contents = [], attributes = {}) {
-    const elm = document.createElement(name);
-    for (let attr in attributes) {
-      elm.setAttribute(attr, attributes[attr]);
-    }
-    for (let content of contents) elm.append(content);
-    return elm;
-  },
+    get_element(name = "div", contents = [], attributes = {}) {
+        const elm = document.createElement(name);
+        for (let attr in attributes) {
+            elm.setAttribute(attr, attributes[attr]);
+        }
+        for (let content of contents) elm.append(content);
+        return elm;
+    },
 
-  append_history_block() {
-    const history_block = this.get_history_block();
-    document.querySelector(".history").append(history_block[0]);
-    return history_block;
-  },
+    append_history_block() {
+        const history_block = this.get_history_block();
+        document.querySelector(".history").append(history_block[0]);
+        return history_block;
+    },
 
-  get_history_block() {
-    const user = this.get_element("p", [], {
-      class: "history__user",
-    });
+    get_history_block() {
+        const user = this.get_element("p", [], {
+            class: "history__user",
+        });
 
-    const time = this.get_element("time", [new Date().toLocaleTimeString()], {
-      datetime: new Date().toLocaleTimeString(),
-    });
+        const time = this.get_element(
+            "time",
+            [new Date().toLocaleTimeString()],
+            {
+                datetime: new Date().toLocaleTimeString(),
+            }
+        );
 
-    const history_title = this.get_element("div", [user, time], {
-      class: "history__title",
-    });
+        const history_title = this.get_element("div", [user, time], {
+            class: "history__title",
+        });
 
-    const history_content = this.get_element("div", [], {
-      class: "history__content",
-    });
+        const history_content = this.get_element("div", [], {
+            class: "history__content",
+        });
 
-    const history_block = this.get_element("div", [], {
-      class: "history__block",
-    });
+        const history_block = this.get_element("div", [], {
+            class: "history__block",
+        });
 
-    history_block.append(history_title);
-    history_block.append(history_content);
+        history_block.append(history_title);
+        history_block.append(history_content);
 
-    return [history_block, history_title, history_content];
-  },
-  history_scroll() {
-    const history = document.querySelector(".history");
-    const sh = history.scrollHeight;
-    history.scroll(0, sh);
-  },
+        return [history_block, history_title, history_content];
+    },
+    history_scroll() {
+        const history = document.querySelector(".history");
+        const sh = history.scrollHeight;
+        history.scroll(0, sh);
+    },
 };
 
 const C_PREFIX = ";";
 const Command = {
-  commands: {
-    C_HELP: C_PREFIX + "help",
-    C_COPYRIGHT: C_PREFIX + "cr",
-    C_THEME: C_PREFIX + "ct",
-    C_GOOGLE: C_PREFIX + "google",
-    C_WIKI: C_PREFIX + "wp",
-    C_YTEMBED: C_PREFIX + "yte",
-    C_RANDOM_USER: C_PREFIX + "ru",
-    C_IP: C_PREFIX + "ip",
-    C_CP: C_PREFIX + "cp",
-    C_ZIP: C_PREFIX + "zip",
-    C_PASSWORD: C_PREFIX + "pass",
-    C_PIC: C_PREFIX + "pic",
-    C_MEME: C_PREFIX + "meme",
-  },
+    commands: {
+        C_HELP: C_PREFIX + "help",
+        C_COPYRIGHT: C_PREFIX + "cr",
+        C_THEME: C_PREFIX + "ct",
+        C_GOOGLE: C_PREFIX + "google",
+        C_WIKI: C_PREFIX + "wp",
+        C_YTEMBED: C_PREFIX + "yte",
+        C_RANDOM_USER: C_PREFIX + "ru",
+        C_IP: C_PREFIX + "ip",
+        C_CP: C_PREFIX + "cp",
+        C_ZIP: C_PREFIX + "zip",
+        C_PASSWORD: C_PREFIX + "pass",
+        C_PIC: C_PREFIX + "pic",
+        C_MEME: C_PREFIX + "meme",
+    },
 };
 
 const Setting = {
-  themes: ["dark", "light", "red", "blue", "green"],
+    themes: ["dark", "light", "red", "blue", "green"],
 
-  initialize() {
-    if (!localStorage.getItem("theme"))
-      localStorage.setItem("theme", "dark");
-    this.set_theme(localStorage.getItem("theme"));
-  },
+    initialize() {
+        if (!localStorage.getItem("theme"))
+            localStorage.setItem("theme", "dark");
+        this.set_theme(localStorage.getItem("theme"));
+    },
 
-  set_theme(theme = "dark") {
-    if (this.themes.includes(theme)) {
-      localStorage.setItem("theme", theme);
-      document.body.setAttribute("class", theme);
-    }
-      else
-      {
-          throw new Error("error")
-      }
-  },
+    set_theme(theme = "dark") {
+        if (this.themes.includes(theme)) {
+            localStorage.setItem("theme", theme);
+            document.body.setAttribute("class", theme);
+        } else {
+            throw new Error("error");
+        }
+    },
 };
+
+export { Bot, User, Setting };
