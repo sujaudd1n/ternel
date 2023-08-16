@@ -7,6 +7,9 @@ const Password = {
     SYMBOL_FLAG: "-s",
     LENGTH_FLAG: "-l",
     QUANTITY_FLAG: "-q",
+    /**
+     * indicates which component to use while rendering.
+     */
     render_element: Lists,
 
     /**
