@@ -1,4 +1,4 @@
-const Password = require("../commands/password");
+import { Password } from "../script/commands/password.js";
 
 /**
  * Checks if quantity is 10
