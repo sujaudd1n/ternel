@@ -21,7 +21,7 @@ form.onsubmit = async (e) => {
     const command_data = await command.manage(input_text);
     const element = command.render_element.create_filled_element(
         command.name,
-        command.description,
+        command.description + ": " + input_text,
         command_data
     );
     console.log(element);
