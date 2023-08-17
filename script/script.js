@@ -20,7 +20,7 @@ form.onsubmit = async (e) => {
     su.append_node(input_text);
 
     const wait_element = Wait.create_filled_element(input_text);
-    ternel.append_node(wait_element);
+    const appended_node = ternel.append_node(wait_element);
     const command = ternel.get_command(input_text);
     if (command) {
         const command_data = await command.manage(input_text);
@@ -30,8 +30,7 @@ form.onsubmit = async (e) => {
             command_data
         );
         console.log(element);
-        wait_element.remove();
-        ternel.append_node(element);
+        ternel.replace_node(appended_node, element);
     }
     input.value = "";
 };

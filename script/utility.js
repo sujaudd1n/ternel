@@ -17,6 +17,13 @@ class User {
     append_node(node) {
         const content = this.create_environment();
         content.append(node);
+        return content;
+    }
+
+    replace_node(container, node) {
+        container.textContent = "";
+        container.append(node);
+        return container;
     }
 
     write_name(target) {
@@ -40,6 +47,41 @@ class User {
             }
         }
     }
+}
+
+class Bot extends User {
+    get_command(text) {
+        const splitted_text = text.split(" ");
+        const first_word = splitted_text[0];
+        for (let command of COMMANDS) {
+            if (";" + command.name === first_word) return command;
+        }
+        return null;
+    }
+}
+
+const Setting = {
+    themes: ["dark", "light", "red", "blue", "green"],
+
+    initialize() {
+        if (!localStorage.getItem("theme"))
+            localStorage.setItem("theme", "dark");
+        this.set_theme(localStorage.getItem("theme"));
+    },
+
+    set_theme(theme = "dark") {
+        if (this.themes.includes(theme)) {
+            localStorage.setItem("theme", theme);
+            document.body.setAttribute("class", theme);
+        } else {
+            throw new Error("error");
+        }
+    },
+};
+
+export { Bot, User, Setting };
+
+/*
 
     ytembed(text) {
         const content = this.create_environment();
@@ -56,19 +98,6 @@ class User {
         );
         content.append(iframe);
     }
-}
-
-class Bot extends User {
-    get_command(text) {
-        const splitted_text = text.split(" ");
-        const first_word = splitted_text[0];
-        for (let command of COMMANDS) {
-            if (";" + command.name === first_word) return command;
-        }
-        return null;
-    }
-}
-/*
   help() {
     this.write([
       ";ct:  Change  theme.",
@@ -300,6 +329,7 @@ const DOMF = {
     },
 };
 
+/*
 const C_PREFIX = ";";
 const Command = {
     commands: {
@@ -318,24 +348,4 @@ const Command = {
         C_MEME: C_PREFIX + "meme",
     },
 };
-
-const Setting = {
-    themes: ["dark", "light", "red", "blue", "green"],
-
-    initialize() {
-        if (!localStorage.getItem("theme"))
-            localStorage.setItem("theme", "dark");
-        this.set_theme(localStorage.getItem("theme"));
-    },
-
-    set_theme(theme = "dark") {
-        if (this.themes.includes(theme)) {
-            localStorage.setItem("theme", theme);
-            document.body.setAttribute("class", theme);
-        } else {
-            throw new Error("error");
-        }
-    },
-};
-
-export { Bot, User, Setting };
+*/

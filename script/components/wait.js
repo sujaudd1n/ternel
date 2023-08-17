@@ -20,7 +20,7 @@ const Wait = {
         const container = create_element("div", [
             title_element,
             message_element,
-            command,
+            "Command: " + command,
         ]);
         return container;
     },
