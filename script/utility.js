@@ -58,6 +58,16 @@ class Bot extends User {
         }
         return null;
     }
+    scroll() {
+        const history_element = document.querySelector(".history");
+        const scroll_amount =
+            history_element.scrollHeight - history_element.clientHeight;
+        history_element.scroll({
+            top: scroll_amount,
+            left: 0,
+            behavior: "smooth",
+        });
+    }
 }
 
 const Setting = {
