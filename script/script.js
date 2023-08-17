@@ -32,8 +32,8 @@ form.onsubmit = async (e) => {
         );
         console.log(element);
         ternel.replace_node(appended_node, element);
-        ternel.scroll();
     } else if (input_text.startsWith(";"))
         ternel.append_node(E404.create_filled_element(input_text));
+    ternel.scroll();
     input.value = "";
 };
