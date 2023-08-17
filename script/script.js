@@ -2,6 +2,7 @@ import { Password } from "./commands/password.js";
 import { Bot, User, Setting } from "./utility.js";
 
 import { Wait } from "./components/wait.js";
+import { E404 } from "./components/E404.js";
 
 const form = document.querySelector(".command__form");
 const input = document.querySelector("#command__text");
@@ -31,6 +32,6 @@ form.onsubmit = async (e) => {
         );
         console.log(element);
         ternel.replace_node(appended_node, element);
-    }
+    } else ternel.append_node(E404.create_filled_element(input_text));
     input.value = "";
 };
