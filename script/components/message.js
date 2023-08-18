@@ -1,11 +1,11 @@
 import { create_element } from "./create_element.js";
 
-const E404 = {
-    name: "e404",
-    description: "Tell the user that certain command is not available",
+const Message = {
+    name: "message",
+    description: "A message with a title.",
 
-    create_filled_element(command, message = `Command ${command} not found.`) {
-        const title_element = create_element("h2", ["Error 404"]);
+    get(title, message) {
+        const title_element = create_element("h2", [title]);
         const message_element = create_element("p", [message]);
         const container = create_element("div", [
             title_element,
@@ -19,4 +19,4 @@ const styles = new CSSStyleSheet();
 
 document.adoptedStyleSheets = [styles];
 
-export { E404 };
+export { Message };
