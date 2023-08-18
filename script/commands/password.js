@@ -31,9 +31,7 @@ const Password = {
         const url = this.generate_url(args);
         const password_list = await this.request_password(url);
 
-        console.log(password_list);
-
-        return password_list;
+        return ["Password", password_description, password_list];
     },
 
     generate_url(options) {
