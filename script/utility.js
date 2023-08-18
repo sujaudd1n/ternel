@@ -1,4 +1,5 @@
 import { Password } from "./commands/password.js";
+import { E404 } from "./commands/e404.js";
 
 const COMMANDS = [Password];
 
@@ -50,13 +51,18 @@ class User {
 }
 
 class Bot extends User {
+  /**
+   * 
+   * @param {string} text 
+   * @returns 
+   */
     get_command(text) {
         const splitted_text = text.split(" ");
         const first_word = splitted_text[0];
         for (let command of COMMANDS) {
             if (";" + command.name === first_word) return command;
         }
-        return null;
+        return E404;
     }
     scroll() {
         const history_element = document.querySelector(".history");

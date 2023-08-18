@@ -10,7 +10,7 @@ const Password = {
     /**
      * indicates which component to use while rendering.
      */
-    render_element: Lists,
+    component: Lists,
 
     /**
      * Parse a password description
@@ -21,7 +21,7 @@ const Password = {
      * -q:number for quantity
      *
      */
-    async manage(password_description) {
+    async execute(password_description) {
         const args = arg(password_description, {
             "-s": Boolean,
             "-l": Number,

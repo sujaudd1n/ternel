@@ -9,7 +9,7 @@ const Lists = {
     name: "lists",
     description: "An element with a title, descripion and lists.",
 
-    create_filled_element(title, descripion, list_items) {
+    get(title, descripion, list_items) {
         const list_elements = [];
         for (let list of list_items) {
             list_elements.push(
