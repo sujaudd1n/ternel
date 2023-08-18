@@ -51,19 +51,19 @@ class User {
 }
 
 class Bot extends User {
-  /**
-   * 
-   * @param {string} text 
-   * @returns 
-   */
-    get_command(text) {
-        const splitted_text = text.split(" ");
-        const first_word = splitted_text[0];
+    /**
+     *
+     * @param {string} text
+     * @returns
+     */
+    get_command(command_name) {
         for (let command of COMMANDS) {
-            if (";" + command.name === first_word) return command;
+          console.log(command.name, command_name)
+            if (command.name === command_name) return command;
         }
         return E404;
     }
+
     scroll() {
         const history_element = document.querySelector(".history");
         const scroll_amount =
@@ -137,20 +137,7 @@ export { Bot, User, Setting };
     Setting.set_theme(theme);
   }
 
-  wiki(text) {
-    const content = this.create_environment();
-    const splitted_text = text.split(" ");
-    let query = "";
-    splitted_text.shift();
-    query = splitted_text.join("_");
-    fetch(`https://en.wikipedia.org/api/rest_v1/page/summary/${query}`)
-      .then((res) => res.json())
-      .then(async (data) => {
-        const para = DOMF.get_element("p");
-        content.append(para);
-        await this.only_write(data["extract"], para);
-      });
-  }
+
   google(text) {
     const splitted_text = text.split(" ");
     if (splitted_text.length < 2) return;
@@ -236,34 +223,6 @@ export { Bot, User, Setting };
         }
       });
   }
-  password(command) {
-    const content = this.create_environment();
-    content.append("Loading...");
-
-    const args = arg(command, {
-      "-s": Boolean,
-      "-l": Number,
-      "-c": Number,
-    });
-
-    let url = "https://makemeapassword.ligos.net/api/v1/alphanumeric/json?";
-    if ("-s" in args) url += "sym=true&";
-    if ("-l" in args) url += `l=${args["-l"]}&`;
-    if ("-c" in args) url += `c=${args["-c"]}&`;
-
-    fetch(url)
-      .then((res) => res.json())
-      .then(async (data) => {
-        content.textContent = "";
-        for (let pass of data["pws"]) {
-          const para = DOMF.get_element("p");
-          content.append(para);
-          await this.only_write(pass, para);
-          DOMF.history_scroll();
-        }
-      });
-  }
-
   pic(text) {
     const splitted_text = text.split(" ");
     const width = splitted_text[1];
