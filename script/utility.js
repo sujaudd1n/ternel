@@ -1,7 +1,8 @@
 import { Password } from "./commands/password.js";
+import { Wiki } from "./commands/wiki.js";
 import { E404 } from "./commands/e404.js";
 
-const COMMANDS = [Password];
+const COMMANDS = [Password, Wiki];
 
 class User {
     constructor(name) {
