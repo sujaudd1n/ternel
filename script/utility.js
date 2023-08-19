@@ -2,8 +2,9 @@ import { Password } from "./commands/password.js";
 import { Wiki } from "./commands/wiki.js";
 import { E404 } from "./commands/e404.js";
 import { Settings } from "./commands/settings.js";
+import { Copyright } from "./commands/copyright.js";
 
-const COMMANDS = [Password, Wiki, Settings];
+const COMMANDS = [Password, Wiki, Settings, Copyright];
 
 class User {
     constructor(name) {
