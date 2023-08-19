@@ -1,8 +1,9 @@
 import { Password } from "./commands/password.js";
 import { Wiki } from "./commands/wiki.js";
 import { E404 } from "./commands/e404.js";
+import { Settings } from "./commands/settings.js";
 
-const COMMANDS = [Password, Wiki];
+const COMMANDS = [Password, Wiki, Settings];
 
 class User {
     constructor(name) {
@@ -77,75 +78,16 @@ class Bot extends User {
     }
 }
 
-const Setting = {
-    themes: ["dark", "light", "red", "blue", "green"],
 
-    initialize() {
-        if (!localStorage.getItem("theme"))
-            localStorage.setItem("theme", "dark");
-        this.set_theme(localStorage.getItem("theme"));
-    },
-
-    set_theme(theme = "dark") {
-        if (this.themes.includes(theme)) {
-            localStorage.setItem("theme", theme);
-            document.body.setAttribute("class", theme);
-        } else {
-            throw new Error("error");
-        }
-    },
-};
-
-export { Bot, User, Setting };
+export { Bot, User };
 
 /*
 
-    ytembed(text) {
-        const content = this.create_environment();
-        const splitted_text = text.split("=");
-        const iframe = DOMF.get_element(
-            "iframe",
-            ["Lol! Looks like your broswer doesn't support iframe."],
-            {
-                src:
-                    "https://youtube.com/embed/" +
-                    splitted_text[splitted_text.length - 1],
-                frameborder: 0,
-            }
-        );
-        content.append(iframe);
-    }
-  help() {
-    this.write([
-      ";ct:  Change  theme.",
-      "I will help you.",
-      ";cr: See copyright.",
-    ]);
-  }
-
-  copyright() {
-    this.write([
-      "&copy; 2023 Md Sujauddin Sekh",
-      "LICENSE GNU GPLV3",
-      "NO WARRENTY",
-    ]);
-  }
-
-  change_theme(text) {
-    const splitted_text = text.split(" ");
-    if (splitted_text.length < 2) return;
-    const theme = splitted_text[1];
-    Setting.set_theme(theme);
-  }
 
 
-  google(text) {
-    const splitted_text = text.split(" ");
-    if (splitted_text.length < 2) return;
-    splitted_text.shift();
-    const query_string = splitted_text.join(" ");
-    window.open(`https://google.com/search?q=${query_string}`);
-  }
+
+
+
 
   async only_write(text, target) {
     if (typeof text === "string")
@@ -156,21 +98,7 @@ export { Bot, User, Setting };
       }
   }
 
-  random_user() {
-    const content = this.create_environment();
-    fetch("https://randomuser.me/api/")
-      .then((r) => r.json())
-      .then(async (r) => {
-        const data = r["results"][0];
-        console.log(data);
-        for (let d in data) {
-          console.log(d);
-          const para = DOMF.get_element("p");
-          content.append(para);
-          await this.only_write(data[d], para);
-        }
-      });
-  }
+
 
   ip(text) {
     /*
