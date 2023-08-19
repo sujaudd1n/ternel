@@ -22,7 +22,7 @@ const Password = {
      *
      */
     async execute(password_description) {
-        const args = arg(password_description, {
+        const args = arg(this.name + ' ' + password_description, {
             "-s": Boolean,
             "-l": Number,
             "-q": Number,
