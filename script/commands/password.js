@@ -21,8 +21,8 @@ const Password = {
      * -q:number for quantity
      *
      */
-    async execute(password_description) {
-        const args = arg(this.name + ' ' + password_description, {
+    async execute(command) {
+        const args = arg(command, {
             "-s": Boolean,
             "-l": Number,
             "-q": Number,
@@ -31,7 +31,7 @@ const Password = {
         const url = this.generate_url(args);
         const password_list = await this.request_password(url);
 
-        return ["Password", password_description, password_list];
+        return ["Password", command, password_list];
     },
 
     generate_url(options) {
