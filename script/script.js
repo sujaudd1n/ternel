@@ -2,6 +2,7 @@ import { Bot, User } from "./utility.js";
 
 import { Wait } from "./commands/wait.js";
 import { Settings } from "./commands/settings.js";
+import { Message } from "./components/message.js";
 
 const form = document.querySelector(".command__form");
 const input = document.querySelector("#command__text");
@@ -28,10 +29,16 @@ form.onsubmit = async (e) => {
 
         const parent_node = ternel.append_node(wait_element);
 
-        const command_data = await command.execute(input_text);
-        if (command.component) {
-            const element = command.component.get(...command_data);
-            ternel.replace_node(parent_node, element);
+        let command_data;
+        try {
+            command_data = await command.execute(input_text);
+        } catch (e) {
+            ternel.append_node(Message.get("Error", e));
+        } finally {
+            if (command.component) {
+                const element = command.component.get(...command_data);
+                ternel.replace_node(parent_node, element);
+            }
         }
     }
 

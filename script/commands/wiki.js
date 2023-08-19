@@ -5,9 +5,16 @@ const Wiki = {
     component: Message,
 
     async execute(topic) {
-        console.log(topic)
+        topic = this.filter_input_text(topic);
         const data = await this.request_data(topic);
         return ["Wikipedia: " + topic, data];
+    },
+
+    filter_input_text(text) {
+        const word_list = text.split(" ");
+        if (word_list.length === 1)
+            throw new Error("wrong number of arguments");
+        return word_list.slice(1).toString();
     },
 
     async request_data(topic) {
