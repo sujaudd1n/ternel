@@ -22,11 +22,16 @@ form.onsubmit = async (e) => {
     if (input_text.startsWith(";")) {
         const first_word = input_text.split(" ")[0].slice(1);
 
-        const command = ternel.get_command(first_word);
+        let command;
+        try {
+            command = ternel.get_command(first_word);
+        } catch (e) {
+            ternel.append_node(Message.get("Error", e));
+            return;
+        }
 
         const wait_data = Wait.execute(input_text);
         const wait_element = Wait.component.get(...wait_data);
-
         const parent_node = ternel.append_node(wait_element);
 
         let command_data;
@@ -34,6 +39,7 @@ form.onsubmit = async (e) => {
             command_data = await command.execute(input_text);
         } catch (e) {
             ternel.append_node(Message.get("Error", e));
+            return
         } finally {
             if (command.component) {
                 const element = command.component.get(...command_data);

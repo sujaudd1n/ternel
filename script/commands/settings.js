@@ -3,6 +3,7 @@ import { Message } from "../components/message.js";
 
 const Settings = {
     name: "set",
+    description: "Settings for ternel.",
     available_settings: [Change_theme],
     component: Message,
 
@@ -28,6 +29,10 @@ const Settings = {
         if (arguements_list.length != 3)
             throw new Error("Wrong number of arguments.");
         return [arguements_list[1], arguements_list[2]];
+    },
+
+    help() {
+        return this.description;
     },
 };
 
