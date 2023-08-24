@@ -20,28 +20,37 @@ form.addEventListener("submit", (e) => {
 
 async function manage_command(e) {
     const input_text = input.value;
+    input.value = "";
+
     su.append_node(input_text);
 
     if (input_text.startsWith(";")) {
         const first_word = input_text.split(" ")[0].slice(1);
 
         let command;
+
         try {
             command = ternel.get_command(first_word);
         } catch (e) {
             ternel.append_node(Message.get("Error", e));
+            ternel.scroll();
             return;
         }
 
-        const wait_data = Wait.execute(input_text);
-        const wait_element = Wait.component.get(...wait_data);
+        const wait_element = Message.get(
+            "Please Wait.",
+            `Data for ${input_text} is being fetched.`
+        );
+
         const parent_node = ternel.append_node(wait_element);
+        ternel.scroll();
 
         let command_data;
         try {
             command_data = await command.execute(input_text);
         } catch (e) {
             ternel.append_node(Message.get("Error", e));
+            ternel.scroll();
             return;
         } finally {
             if (command.component) {
@@ -52,5 +61,4 @@ async function manage_command(e) {
     }
 
     ternel.scroll();
-    input.value = "";
 }
