@@ -1,10 +1,4 @@
-import { Password } from "./commands/password.js";
-import { Wiki } from "./commands/wiki.js";
-import { E404 } from "./commands/e404.js";
-import { Settings } from "./commands/settings.js";
-import { Copyright } from "./commands/copyright.js";
-
-const COMMANDS = [Password, Wiki, Settings, Copyright];
+import { ALL_COMMANDS } from "./commands/helper.js";
 
 class User {
     constructor(name) {
@@ -60,11 +54,11 @@ class Bot extends User {
      * @returns
      */
     get_command(command_name) {
-        for (let command of COMMANDS) {
-          console.log(command.name, command_name)
+        for (let command of ALL_COMMANDS) {
+            console.log(command.name, command_name);
             if (command.name === command_name) return command;
         }
-        return E404;
+        throw new Error("Command not found.");
     }
 
     scroll() {
@@ -78,7 +72,6 @@ class Bot extends User {
         });
     }
 }
-
 
 export { Bot, User };
 

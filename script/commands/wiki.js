@@ -24,6 +24,11 @@ const Wiki = {
         const data = await res.json();
         return data["extract"];
     },
+
+    help() {
+        const help_text = this.description;
+        return help_text;
+    },
 };
 
 export { Wiki };

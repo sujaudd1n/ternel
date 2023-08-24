@@ -25,6 +25,11 @@ const Copyright = {
     `;
         return ["Copyright", license];
     },
+
+    help()
+    {
+        return this.description;
+    }
 };
 
 export { Copyright };

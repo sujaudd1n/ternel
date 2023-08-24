@@ -54,6 +54,10 @@ const Password = {
         console.log(data);
         return data["pws"];
     },
+
+    help() {
+        return this.description;
+    },
 };
 
 export { Password };
