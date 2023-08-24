@@ -13,9 +13,12 @@ Settings.initialize();
 const su = new User("su");
 const ternel = new Bot("Ternel");
 
-form.onsubmit = async (e) => {
+form.addEventListener("submit", (e) => {
     e.preventDefault();
+    manage_command(e);
+});
 
+async function manage_command(e) {
     const input_text = input.value;
     su.append_node(input_text);
 
@@ -39,7 +42,7 @@ form.onsubmit = async (e) => {
             command_data = await command.execute(input_text);
         } catch (e) {
             ternel.append_node(Message.get("Error", e));
-            return
+            return;
         } finally {
             if (command.component) {
                 const element = command.component.get(...command_data);
@@ -50,4 +53,4 @@ form.onsubmit = async (e) => {
 
     ternel.scroll();
     input.value = "";
-};
+}
