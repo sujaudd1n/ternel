@@ -18,6 +18,13 @@ form.addEventListener("submit", (e) => {
     manage_command(e);
 });
 
+document.addEventListener("keydown", (e) => {
+    if (e.key === "/") {
+        e.preventDefault();
+        input.focus();
+    }
+});
+
 async function manage_command(e) {
     const input_text = input.value;
     input.value = "";
