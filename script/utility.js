@@ -160,17 +160,7 @@ export { Bot, User };
         content.append(img);
       });
   }
-  meme() {
-    const content = this.create_environment();
-    fetch("https://meme-api.com/gimme")
-      .then((res) => res.json())
-      .then((data) => {
-        const img = DOMF.get_element("img", [], {
-          src: data["url"],
-        });
-        content.append(img);
-      });
-  }
+
 }
 */
 
@@ -226,24 +216,3 @@ const DOMF = {
         history.scroll(0, sh);
     },
 };
-
-/*
-const C_PREFIX = ";";
-const Command = {
-    commands: {
-        C_HELP: C_PREFIX + "help",
-        C_COPYRIGHT: C_PREFIX + "cr",
-        C_THEME: C_PREFIX + "ct",
-        C_GOOGLE: C_PREFIX + "google",
-        C_WIKI: C_PREFIX + "wp",
-        C_YTEMBED: C_PREFIX + "yte",
-        C_RANDOM_USER: C_PREFIX + "ru",
-        C_IP: C_PREFIX + "ip",
-        C_CP: C_PREFIX + "cp",
-        C_ZIP: C_PREFIX + "zip",
-        C_PASSWORD: C_PREFIX + "pass",
-        C_PIC: C_PREFIX + "pic",
-        C_MEME: C_PREFIX + "meme",
-    },
-};
-*/
