@@ -1,6 +1,5 @@
 import { Bot, User } from "./utility.js";
 
-import { Wait } from "./commands/wait.js";
 import { Settings } from "./commands/settings.js";
 import { Message } from "./components/message.js";
 
