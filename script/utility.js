@@ -100,7 +100,6 @@ export { Bot, User };
     const splitted_text = text.split(" ");
     let url = null;
     if (splitted_text.length === 1) url = "https://ipapi.co/json";
-    else url = `https://ipapi.co/${splitted_text[1]}/json`;
     console.log(url);
     fetch(url)
       .then((r) => r.json())
