@@ -17,7 +17,7 @@ class Wiki_class {
         const word_list = text.split(" ");
         if (word_list.length === 1)
             throw new Error("wrong number of arguments");
-        return word_list.slice(1).toString();
+        return word_list.slice(1).toString().replaceAll(',', ' ');
     }
 
     async request_data(topic) {
