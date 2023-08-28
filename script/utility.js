@@ -12,15 +12,41 @@ class User {
         return block[2];
     }
 
-    append_node(node) {
+    async append_node(node) {
         const content = this.create_environment();
-        content.append(node);
+        if (node.nodeType) await this.animate_append(content, node);
         return content;
     }
 
+    async animate_append(parent, node) {
+        node = node.cloneNode(true);
+        console.log(node.childNodes, node.nodeType);
+
+        if (node.nodeType === 3) {
+            for (const char of node.textContent) {
+                parent.append(char);
+                await new Promise((r) => setTimeout(r, 1));
+                Bot.prototype.scroll()
+            }
+        } else {
+            const children = [];
+            node.childNodes.forEach((element) => {
+                children.push(element.cloneNode(true));
+            });
+            console.log(children);
+
+            node.textContent = "";
+            parent.append(node);
+
+            for (const child of children)
+                await this.animate_append(node, child);
+        }
+    }
+
     replace_node(container, node) {
+        console.log(container)
         container.textContent = "";
-        container.append(node);
+        this.animate_append(container, node);
         return container;
     }
 
@@ -55,7 +81,6 @@ class Bot extends User {
      */
     get_command(command_name) {
         for (let command of ALL_COMMANDS) {
-            console.log(command.name, command_name);
             if (command.name === command_name) return command;
         }
         throw new Error("Command not found.");
