@@ -48,7 +48,7 @@ async function manage_command(e) {
             `Data for ${input_text} is being fetched.`
         );
 
-        const parent_node = ternel.append_node(wait_element);
+        const parent_node = await ternel.append_node(wait_element);
         ternel.scroll();
 
         let command_data;
