@@ -31,8 +31,14 @@ async function manage_command(e) {
     su.append_node(input_text);
 
     if (input_text.startsWith(";")) {
-        const first_word = input_text.split(" ")[0].slice(1);
+        const wait_element = Message.get(
+            "Please Wait.",
+            `Data for ${input_text} is being fetched.`
+        );
+        const parent_node = await ternel.append_node(wait_element);
+        ternel.scroll();
 
+        const first_word = input_text.split(" ")[0].slice(1);
         let command;
 
         try {
@@ -43,28 +49,22 @@ async function manage_command(e) {
             return;
         }
 
-        const wait_element = Message.get(
-            "Please Wait.",
-            `Data for ${input_text} is being fetched.`
-        );
-
-        const parent_node = await ternel.append_node(wait_element);
-        ternel.scroll();
-
         let command_data;
         try {
             command_data = await command.execute(input_text);
         } catch (e) {
-            ternel.append_node(Message.get("Error", e));
+            await ternel.append_node(Message.get("Error", e));
             ternel.scroll();
             return;
         } finally {
             if (command.component) {
                 const element = command.component.get(...command_data);
-                ternel.replace_node(parent_node, element);
+                await ternel.replace_node(parent_node, element);
             }
         }
     }
+
+    console.log("HREE");
 
     ternel.scroll();
 }
