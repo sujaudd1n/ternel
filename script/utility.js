@@ -1,4 +1,5 @@
 import { ALL_COMMANDS } from "./commands/helper.js";
+import { append_with_animation } from "https://cdn.jsdelivr.net/gh/sujaudd1n/animate_append/animate_append.js";
 
 class User {
     constructor(name) {
@@ -14,39 +15,16 @@ class User {
 
     async append_node(node) {
         const content = this.create_environment();
-        if (node.nodeType) await this.animate_append(content, node);
+        if (typeof node === "string") node = document.createTextNode(node);
+        console.log(typeof node);
+        if (node.nodeType) await append_with_animation(content, node, "char");
         return content;
     }
 
-    async animate_append(parent, node) {
-        node = node.cloneNode(true);
-        console.log(node.childNodes, node.nodeType);
-
-        if (node.nodeType === 3) {
-            for (const char of node.textContent) {
-                parent.append(char);
-                await new Promise((r) => setTimeout(r, 1));
-                Bot.prototype.scroll()
-            }
-        } else {
-            const children = [];
-            node.childNodes.forEach((element) => {
-                children.push(element.cloneNode(true));
-            });
-            console.log(children);
-
-            node.textContent = "";
-            parent.append(node);
-
-            for (const child of children)
-                await this.animate_append(node, child);
-        }
-    }
-
-    replace_node(container, node) {
-        console.log(container)
+    async replace_node(container, node) {
+        console.log(container);
         container.textContent = "";
-        this.animate_append(container, node);
+        await append_with_animation(container, node, "text");
         return container;
     }
 
