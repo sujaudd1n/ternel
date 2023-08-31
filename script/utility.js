@@ -109,27 +109,6 @@ export { Bot, User };
       }
   }
 
-
-
-  ip(text) {
-    /*
-    https://ipapi.co/api
-    const splitted_text = text.split(" ");
-    let url = null;
-    if (splitted_text.length === 1) url = "https://ipapi.co/json";
-    console.log(url);
-    fetch(url)
-      .then((r) => r.json())
-      .then(async (r) => {
-        const content = this.create_environment();
-        for (let key in r) {
-          const para = DOMF.get_element("p");
-          content.append(para);
-          await this.only_write(key + ": " + r[key], para);
-          DOMF.history_scroll();
-        }
-      });
-  }
   cp(text) {
     const splitted_text = text.split(" ");
     const url = "https://kontests.net/api/v1/" + splitted_text[1];

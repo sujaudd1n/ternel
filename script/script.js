@@ -38,21 +38,21 @@ async function manage_command(e) {
         const parent_node = await ternel.append_node(wait_element);
         ternel.scroll();
 
-        let command_data;
+        let command_info;
         try {
-            command_data = await ternel.manage_command(input_text);
+            command_info = await ternel.manage_command(input_text);
         } catch (e) {
             await ternel.append_node(Message.get("Error", e));
-            ternel.scroll();
             return;
         } finally {
-            if (command_data[1]) {
-                const element = command_data[1].get(...command_data[0]);
+            if (command_info["component"]) {
+                const element = command_info["component"].get(
+                    ...command_info["data"]
+                );
                 await ternel.replace_node(parent_node, element);
             }
         }
     }
-
 
     ternel.scroll();
 }
