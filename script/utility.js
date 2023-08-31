@@ -17,14 +17,15 @@ class User {
         const content = this.create_environment();
         if (typeof node === "string") node = document.createTextNode(node);
         console.log(typeof node);
-        if (node.nodeType) await append_with_animation(content, node, "char");
+        //await append_with_animation(content, node, "char");
+        content.append(node);
         return content;
     }
 
     async replace_node(container, node) {
-        console.log(container);
         container.textContent = "";
-        await append_with_animation(container, node, "text");
+        //await append_with_animation(container, node, "text");
+        container.append(node);
         return container;
     }
 
@@ -54,8 +55,21 @@ class User {
 class Bot extends User {
     /**
      *
+     * @param {string} input_text - commmand given by the user.
+     * @returns {data: data, component: component}
+     */
+    async manage_command(input_text) {
+        const first_word = input_text.split(" ")[0].slice(1);
+
+        const command = this.get_command(first_word);
+        const command_data = await command.execute(input_text);
+        return { data: command_data, component: command.component };
+    }
+    /**
+     *
      * @param {string} text
-     * @returns
+     * @returns command
+     * @throws Error if command not found.
      */
     get_command(command_name) {
         for (let command of ALL_COMMANDS) {

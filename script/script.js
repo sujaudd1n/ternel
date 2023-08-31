@@ -38,33 +38,21 @@ async function manage_command(e) {
         const parent_node = await ternel.append_node(wait_element);
         ternel.scroll();
 
-        const first_word = input_text.split(" ")[0].slice(1);
-        let command;
-
-        try {
-            command = ternel.get_command(first_word);
-        } catch (e) {
-            ternel.append_node(Message.get("Error", e));
-            ternel.scroll();
-            return;
-        }
-
         let command_data;
         try {
-            command_data = await command.execute(input_text);
+            command_data = await ternel.manage_command(input_text);
         } catch (e) {
             await ternel.append_node(Message.get("Error", e));
             ternel.scroll();
             return;
         } finally {
-            if (command.component) {
-                const element = command.component.get(...command_data);
+            if (command_data[1]) {
+                const element = command_data[1].get(...command_data[0]);
                 await ternel.replace_node(parent_node, element);
             }
         }
     }
 
-    console.log("HREE");
 
     ternel.scroll();
 }
