@@ -56,7 +56,7 @@ const Password = {
     },
 
     help() {
-        return this.description;
+        return ["Password", "Generate password", [this.description]];
     },
 };
 
