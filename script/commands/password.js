@@ -1,16 +1,21 @@
 import { arg } from "../arg/index.js";
-import { Lists } from "../components/lists.js";
 
-const Password = {
-    name: "pass",
-    description: "Password generator",
-    SYMBOL_FLAG: "-s",
-    LENGTH_FLAG: "-l",
-    QUANTITY_FLAG: "-q",
+import { Title_lists } from "../components/title_description_lists.js";
+import { Password_help } from "../components/password_help.js";
+
+class Password_class {
+    constructor() {
+        this.name = "pass";
+        this.description = "Password generator";
+        this.SYMBOL_FLAG = "-s";
+        this.LENGTH_FLAG = "-l";
+        this.QUANTITY_FLAG = "-q";
+        this.component = Title_lists;
+        this.help_component = Password_help;
+    }
     /**
      * indicates which component to use while rendering.
      */
-    component: Lists,
 
     /**
      * Parse a password description
@@ -31,8 +36,11 @@ const Password = {
         const url = this.generate_url(args);
         const password_list = await this.request_password(url);
 
-        return ["Password", command, password_list];
-    },
+        return {
+            data: ["Password", command, password_list],
+            component: this.component,
+        };
+    }
 
     generate_url(options) {
         let url = "https://makemeapassword.ligos.net/api/v1/alphanumeric/json?";
@@ -40,7 +48,7 @@ const Password = {
         if (this.LENGTH_FLAG in options) url += `l=${options["-l"]}&`;
         if (this.QUANTITY_FLAG in options) url += `c=${options["-q"]}&`;
         return url;
-    },
+    }
 
     /**
      *
@@ -53,11 +61,22 @@ const Password = {
         console.log(url);
         console.log(data);
         return data["pws"];
-    },
+    }
 
-    help() {
-        return ["Password", "Generate password", [this.description]];
-    },
-};
+    help(subcommand = "") {
+        const usage = ";pass [-lqs]";
+        const options = [
+            "-l {int} specifies length of password.",
+            "-q {int} specifies quantity of password.",
+            "-s {bool} specifies if symbols is included or not.",
+        ];
+        return {
+            data: [this.name, this.description, usage, options],
+            component: this.help_component,
+        };
+    }
+}
+
+const Password = new Password_class();
 
 export { Password };

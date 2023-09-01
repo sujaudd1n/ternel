@@ -1,10 +1,10 @@
-import { Lists } from "../components/lists.js";
+import { Title_lists } from "../components/title_description_lists.js";
 
 class IP_class {
     constructor() {
         this.name = "ip";
         this.description = "IP address information.";
-        this.component = Lists;
+        this.component = Title_lists;
     }
 
     async execute(input_text) {

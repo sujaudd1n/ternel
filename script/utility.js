@@ -62,8 +62,11 @@ class Bot extends User {
         const first_word = input_text.split(" ")[0].slice(1);
 
         const command = this.get_command(first_word);
-        const command_data = await command.execute(input_text);
-        return { data: command_data, component: command.component };
+        const command_info = await command.execute(input_text);
+        return {
+            data: command_info["data"],
+            component: command_info["component"],
+        };
     }
     /**
      *

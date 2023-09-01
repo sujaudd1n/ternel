@@ -1,4 +1,4 @@
-import { Lists } from "../components/lists.js";
+import { Title_lists } from "../components/title_description_lists.js";
 import { ALL_COMMANDS } from "./helper.js";
 
 /**
@@ -12,7 +12,7 @@ class Help_class {
     constructor() {
         this.name = "help";
         this.description = "Help for the user.";
-        this.component = Lists;
+        this.component = Title_lists;
     }
 
     async execute(input_text) {

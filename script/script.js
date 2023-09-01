@@ -45,6 +45,7 @@ async function manage_command(e) {
             await ternel.append_node(Message.get("Error", e));
             return;
         } finally {
+            console.log(command_info)
             if (command_info["component"]) {
                 const element = command_info["component"].get(
                     ...command_info["data"]
