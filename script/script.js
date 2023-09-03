@@ -44,14 +44,14 @@ async function manage_command(e) {
         } catch (e) {
             await ternel.append_node(Message.get_element("Error", e));
             return;
-        } finally {
+        }
+        console.log(command_info);
+        if (command_info["component"]) {
             console.log(command_info)
-            if (command_info["component"]) {
-                const element = command_info["component"].get_element(
-                    ...command_info["data"]
-                );
-                await ternel.replace_node(parent_node, element);
-            }
+            const element = command_info["component"].get_element(
+                ...command_info["data"]
+            );
+            await ternel.replace_node(parent_node, element);
         }
     }
 

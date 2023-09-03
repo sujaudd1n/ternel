@@ -2,11 +2,7 @@ import { Title_lists } from "../components/title_description_lists.js";
 import { ALL_COMMANDS } from "./helper.js";
 
 /**
- * Provides help for the user.
- * Examples:
- * - ;help
- * - ;help wiki
- * - ;help set ct
+ * Representing help command.
  */
 class Help_class {
     constructor() {
@@ -20,24 +16,33 @@ class Help_class {
         if (words_list.length === 1) return this.get_all_general_help_text();
         else {
             const command_name = words_list[1];
+            const subcommand_name = words_list.slice(2).join(' ');
+            console.log(subcommand_name);
             for (const command of ALL_COMMANDS) {
-                if (command.name === command_name)
-                    return command.help();
+                if (command.name === command_name) return command.help(subcommand_name);
             }
         }
     }
+
     get_all_general_help_text() {
         let help_text_list = [];
         for (const command of ALL_COMMANDS) {
             help_text_list.push(";" + command.name + " - " + command.help());
         }
-        return ["Help", "Usage guide.", help_text_list];
+        return {
+            data: ["Help", "Usage guide.", help_text_list],
+            component: this.component,
+        };
     }
 
     help(sub_command = "") {
-        const description = "Help is the command for user guide on how to use \
-        a paricular command."
-        return ["Help", description, [this.description]];
+        const description =
+            "Help is the command for user guide on how to use \
+        a paricular command.";
+        return {
+            data: ["Help", description, [this.description]],
+            component: this.component,
+        };
     }
 }
 
