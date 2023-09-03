@@ -6,7 +6,7 @@ class Paragraph_class {
         this.description = "A paragraph of texts.";
     }
 
-    get(texts) {
+    get_element(texts) {
         const text_node = document.createTextNode(texts);
         const paragraph = create_element("p", [text_node]);
         return paragraph;

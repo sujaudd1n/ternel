@@ -3,7 +3,11 @@ import { arg } from "../arg/index.js";
 import { Title_lists } from "../components/title_description_lists.js";
 import { Password_help } from "../components/password_help.js";
 
+/**
+ * Class representing password command.
+ */
 class Password_class {
+
     constructor() {
         this.name = "pass";
         this.description = "Password generator";
@@ -13,9 +17,6 @@ class Password_class {
         this.component = Title_lists;
         this.help_component = Password_help;
     }
-    /**
-     * indicates which component to use while rendering.
-     */
 
     /**
      * Parse a password description
@@ -52,6 +53,7 @@ class Password_class {
 
     /**
      *
+     * @method
      * @param {url} url - request to url
      * @returns array of password
      */

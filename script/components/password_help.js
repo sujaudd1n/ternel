@@ -7,11 +7,11 @@ class Password_help_class {
         this.description = "A paragraph of texts.";
     }
 
-    get(title, description, usage, options) {
+    get_element(title, description, usage, options) {
         const title_element = create_element("h2", [title]);
         const description_element = create_element("p", [description]);
         const usage_element = create_element("p", [usage]);
-        const options_element = Lists.get(options);
+        const options_element = Lists.get_element(options);
         return create_element("div", [
             title_element,
             description_element,

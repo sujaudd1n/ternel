@@ -14,7 +14,7 @@ const Lists = {
      * @param {Array} list_items
      * @returns HTMLElement
      */
-    get(list_items) {
+    get_element(list_items) {
         const list_elements = [];
 
         for (let item of list_items) {
