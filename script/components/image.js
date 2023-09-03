@@ -6,7 +6,7 @@ class Image_class {
         this.description = "Render an image.";
     }
 
-    get(image_url) {
+    get_element(image_url) {
         const image_element = create_element("img", [], { src: image_url });
         return image_element;
     }
