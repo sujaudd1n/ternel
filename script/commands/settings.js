@@ -1,5 +1,29 @@
-import { Change_theme } from "./change_theme.js";
 import { Message } from "../components/message.js";
+
+const Change_theme = {
+    name: "ct",
+    description: "Change theme of ternel.",
+    component: Message,
+    help_component: Message,
+
+    themes: ["dark", "light", "red", "blue", "green"],
+
+    execute(theme) {
+        if (!this.themes.includes(theme))
+            throw new Error(`Theme ${theme} not found.`);
+        localStorage.setItem("theme", theme);
+        document.body.classList = localStorage.getItem("theme");
+        return ["Theme changed.", "Current theme is " + theme];
+    },
+    help(subcommand = "") {
+        return {
+            data: ["Change theme", this.description],
+            component: this.help_component,
+        };
+    },
+};
+
+const SUBCOMMANDS = [Change_theme];
 
 const Settings = {
     name: "set",
@@ -31,8 +55,20 @@ const Settings = {
         return [arguements_list[1], arguements_list[2]];
     },
 
-    help() {
-        return this.description;
+    help(subcommand = "") {
+        if (subcommand) {
+            const sub_name = subcommand.split(" ")[0];
+            for (const sub of SUBCOMMANDS) {
+                if (sub_name === sub.name) {
+                    return sub.help();
+                }
+            }
+            throw new Error("Subcommand is not found.");
+        }
+        return {
+            data: ["Settings", this.description],
+            component: this.component,
+        };
     },
 };
 

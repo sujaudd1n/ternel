@@ -4,10 +4,9 @@
  * Class reprenting a command.
  */
 class Command {
-    constructor()
-    {
-        this.name = "command"
-        this.description = "Description for the command."
+    constructor() {
+        this.name = "command";
+        this.description = "Description for the command.";
         // component that will be used to render it's data.
         this.component = Title_lists;
         // component that will be used to render it's help data (user guide).
