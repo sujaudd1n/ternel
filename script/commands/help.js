@@ -24,6 +24,7 @@ class Help_class {
                 if (command.name === command_name)
                     return command.help(subcommand_name);
             }
+            throw new Error("Command not found.")
         }
     }
 
