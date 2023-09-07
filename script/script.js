@@ -27,7 +27,8 @@ document.addEventListener("keydown", (e) => {
 async function manage_command(e) {
     const input_text = input.value.trim();
     input.value = "";
-    console.log(input_text)
+    input.blur();
+    console.log(input_text);
 
     su.append_node(input_text);
 
