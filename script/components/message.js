@@ -15,8 +15,4 @@ const Message = {
     },
 };
 
-const styles = new CSSStyleSheet();
-
-document.adoptedStyleSheets = [styles];
-
 export { Message };

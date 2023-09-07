@@ -12,10 +12,6 @@ class Image_class {
     }
 }
 
-const styles = new CSSStyleSheet();
-
-document.adoptedStyleSheets = [styles];
-
 const Image = new Image_class();
 
 export { Image };

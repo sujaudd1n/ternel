@@ -11,6 +11,7 @@ Settings.initialize();
 
 const su = new User("su");
 const ternel = new Bot("Ternel");
+Object.assign(globalThis, { ternel });
 
 form.addEventListener("submit", (e) => {
     e.preventDefault();
@@ -25,8 +26,9 @@ document.addEventListener("keydown", (e) => {
 });
 
 async function manage_command(e) {
-    const input_text = input.value;
+    const input_text = input.value.trim();
     input.value = "";
+    console.log(input_text)
 
     su.append_node(input_text);
 
@@ -40,14 +42,14 @@ async function manage_command(e) {
 
         let command_info;
         try {
-            command_info = await ternel.manage_command(input_text);
+            command_info = await ternel.execute_command(input_text);
         } catch (e) {
             await ternel.append_node(Message.get_element("Error", e));
             return;
         }
         console.log(command_info);
         if (command_info["component"]) {
-            console.log(command_info)
+            console.log(command_info);
             const element = command_info["component"].get_element(
                 ...command_info["data"]
             );
