@@ -19,8 +19,9 @@ form.addEventListener("submit", (e) => {
 });
 
 document.addEventListener("keydown", (e) => {
-    if (e.key === "/") {
+    if (e.key === "/" && document.activeElement !== input) {
         e.preventDefault();
+        input.focus();
     }
 });
 
