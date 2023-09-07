@@ -44,9 +44,17 @@ img
 {
     max-width: unset;
 }
+
+.command
+{
+    height: 50px;
+    background-color: var(--bg-light);
+}
+
 .command__form
 {
     position: relative;
+    height: inherit;
 }
 
 .command__form::before
@@ -59,9 +67,14 @@ img
     left: 10px;
 }
 
+.command__form input
+{
+    display: block;
+    height: inherit;
+}
+
 input:focus
 {
-    background-color: var(--bg-light);
     outline: none;
 }
 
@@ -76,7 +89,7 @@ input:focus
 {
     display: flex;
     flex-flow: column;
-    height: calc(100vh - 0px);
+    height: calc(100vh);
 }
 
 .history

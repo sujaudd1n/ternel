@@ -21,7 +21,6 @@ form.addEventListener("submit", (e) => {
 document.addEventListener("keydown", (e) => {
     if (e.key === "/") {
         e.preventDefault();
-        input.focus();
     }
 });
 
