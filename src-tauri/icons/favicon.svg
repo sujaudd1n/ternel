@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="424.55219"
+   height="429.94904"
+   viewBox="0 0 424.55219 429.94904"
+   version="1.1"
+   id="svg1"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs1" />
+  <g
+     id="layer1"
+     transform="translate(485.26674,-14.841337)">
+    <rect
+       style="fill:#4d4d4d"
+       id="rect3"
+       width="424.77353"
+       height="429.03198"
+       x="-485.43539"
+       y="15.305128" />
+    <path
+       style="fill:#222226;stroke-width:0.899475"
+       d="M -485.26674,229.81585 V 14.841337 h 212.27609 212.27609 V 229.81585 444.79037 h -212.27609 -212.27609 z"
+       id="path4" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:379.736px;font-family:Takota;-inkscape-font-specification:Takota;fill:#1e90ff;stroke-width:1.97779"
+       x="-364.75775"
+       y="386.09412"
+       id="text4"
+       transform="scale(1.023418,0.97711785)"><tspan
+         id="tspan4"
+         x="-364.75775"
+         y="386.09412"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Takota;-inkscape-font-specification:Takota;fill:#1e90ff;stroke-width:1.97779">T</tspan></text>
+  </g>
+</svg>
