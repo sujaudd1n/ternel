@@ -36,3 +36,4 @@ To get additional information for a particular command execute ```;help
 ## Download
 
 - `PWA` is available.
+- Download [appimage](https://github.com/sujaudd1n/ternel/releases) for linux.
