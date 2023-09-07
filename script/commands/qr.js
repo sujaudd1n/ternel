@@ -1,17 +1,19 @@
 import { Image } from "../components/image.js";
+import { Title_lists } from "../components/title_description_lists.js";
 
 class QR_class {
     constructor() {
         this.name = "qr";
         this.descriptions = "Generate QR code from texts.";
         this.component = Image;
+        this.help_component = Title_lists;
     }
 
     async execute(input_text) {
         const query = this.filter_input_data(input_text);
         const qr_image_url = await this.request_data(query);
 
-        return [qr_image_url];
+        return { data: [qr_image_url], component: this.component };
     }
 
     /**
@@ -46,7 +48,10 @@ class QR_class {
      * @returns {string} a help text for user.
      */
     help() {
-        return this.descriptions;
+        return {
+            data: ["qr", this.descriptions, [";qr <text>"]],
+            component: this.help_component,
+        };
     }
 }
 
