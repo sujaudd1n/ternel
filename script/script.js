@@ -11,6 +11,9 @@ Settings.initialize();
 
 const su = new User("su");
 const ternel = new Bot("Ternel");
+ternel.append_node(
+    Message.get_element("Hello", "I'm ternel. How can I help you?")
+);
 Object.assign(globalThis, { ternel });
 
 form.addEventListener("submit", (e) => {
