@@ -134,8 +134,7 @@ input:focus
     position: absolute;
     top: 0;
     bottom: 0;
-    left: -25%;
     right: 0;
-    width: 150% !important;
+    left: 0;
     z-index: -1;
 }
