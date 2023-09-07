@@ -30,7 +30,11 @@ class Help_class {
     get_all_general_help_text() {
         let help_text_list = [];
         for (const command of ALL_COMMANDS) {
-            help_text_list.push(";" + command.name + " - " + command.description);
+            help_text_list.push(
+                document.createTextNode(
+                    ";" + command.name + " - " + command.description
+                )
+            );
         }
         return {
             data: ["Help", "Usage guide.", help_text_list],

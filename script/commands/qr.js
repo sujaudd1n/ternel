@@ -4,7 +4,7 @@ import { Title_lists } from "../components/title_description_lists.js";
 class QR_class {
     constructor() {
         this.name = "qr";
-        this.descriptions = "Generate QR code from texts.";
+        this.description = "Generate QR code from texts.";
         this.component = Image;
         this.help_component = Title_lists;
     }

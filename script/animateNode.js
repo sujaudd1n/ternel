@@ -76,8 +76,10 @@ class AnimateNode {
      * @param {TextNode} node will appended while begin animated.
      */
     async text_animation(parent, node) {
+        console.log(node)
         parent.append(node);
         await new Promise((tmp) => setTimeout(tmp, this.speed * 5));
+        ternel.scroll();
     }
 
     /**
