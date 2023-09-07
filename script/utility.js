@@ -1,5 +1,5 @@
+import { animateNode } from "./animateNode.js";
 import { ALL_COMMANDS } from "./commands/helper.js";
-import { append_with_animation } from "https://cdn.jsdelivr.net/gh/sujaudd1n/animate_append/animate_append.js";
 
 class User {
     constructor(name) {
@@ -17,15 +17,15 @@ class User {
         const content = this.create_environment();
         if (typeof node === "string") node = document.createTextNode(node);
         console.log(typeof node);
-        //await append_with_animation(content, node, "char");
-        content.append(node);
+        await animateNode.char(content, node);
+        //content.append(node);
         return content;
     }
 
     async replace_node(container, node) {
         container.textContent = "";
-        //await append_with_animation(container, node, "text");
-        container.append(node);
+        await animateNode.char(container, node);
+        //container.append(node);
         return container;
     }
 
@@ -58,7 +58,7 @@ class Bot extends User {
      * @param {string} input_text - commmand given by the user.
      * @returns {data: data, component: component}
      */
-    async manage_command(input_text) {
+    async execute_command(input_text) {
         const first_word = input_text.split(" ")[0].slice(1);
 
         const command = this.get_command(first_word);

@@ -21,10 +21,6 @@ class Password_help_class {
     }
 }
 
-const styles = new CSSStyleSheet();
-
-document.adoptedStyleSheets = [styles];
-
 const Password_help = new Password_help_class();
 
 export { Password_help };

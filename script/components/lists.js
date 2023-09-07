@@ -33,8 +33,9 @@ const Lists = {
     },
 };
 
-const styles = new CSSStyleSheet();
+const styles2 = new CSSStyleSheet();
 
+/*
 styles.insertRule(
     `
 .${description_css_identifier}
@@ -51,7 +52,8 @@ styles.insertRule(
 }
 `
 );
-styles.insertRule(
+*/
+styles2.insertRule(
     `
 
 .${list_css_identifier}
@@ -61,6 +63,6 @@ styles.insertRule(
 `
 );
 
-document.adoptedStyleSheets = [styles];
+document.adoptedstyleSheets = [...document.adoptedStyleSheets, styles2];
 
 export { Lists };

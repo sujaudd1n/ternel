@@ -37,34 +37,4 @@ const Title_lists = {
     },
 };
 
-const styles = new CSSStyleSheet();
-
-styles.insertRule(
-    `
-.${description_css_identifier}
-{
-    margin-bottom: 20px;
-}
-`
-);
-styles.insertRule(
-    `
-.${title_css_identifier}
-{
-    margin-bottom: 20px;
-}
-`
-);
-styles.insertRule(
-    `
-
-.${list_css_identifier}
-{
-    margin-bottom: 10px;
-}
-`
-);
-
-document.adoptedStyleSheets = [styles];
-
 export { Title_lists };

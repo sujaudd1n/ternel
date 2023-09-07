@@ -1,4 +1,5 @@
 import { Title_lists } from "../components/title_description_lists.js";
+import { Message } from "../components/message.js";
 import { ALL_COMMANDS } from "./helper.js";
 
 /**
@@ -9,6 +10,7 @@ class Help_class {
         this.name = "help";
         this.description = "Help for the user.";
         this.component = Title_lists;
+        this.help_component = Message;
     }
 
     async execute(input_text) {
@@ -16,10 +18,11 @@ class Help_class {
         if (words_list.length === 1) return this.get_all_general_help_text();
         else {
             const command_name = words_list[1];
-            const subcommand_name = words_list.slice(2).join(' ');
+            const subcommand_name = words_list.slice(2).join(" ");
             console.log(subcommand_name);
             for (const command of ALL_COMMANDS) {
-                if (command.name === command_name) return command.help(subcommand_name);
+                if (command.name === command_name)
+                    return command.help(subcommand_name);
             }
         }
     }
@@ -27,7 +30,7 @@ class Help_class {
     get_all_general_help_text() {
         let help_text_list = [];
         for (const command of ALL_COMMANDS) {
-            help_text_list.push(";" + command.name + " - " + command.help());
+            help_text_list.push(";" + command.name + " - " + command.description);
         }
         return {
             data: ["Help", "Usage guide.", help_text_list],
@@ -40,8 +43,8 @@ class Help_class {
             "Help is the command for user guide on how to use \
         a paricular command.";
         return {
-            data: ["Help", description, [this.description]],
-            component: this.component,
+            data: ["Help", description],
+            component: this.help_component,
         };
     }
 }

@@ -5,13 +5,17 @@ class IP_class {
         this.name = "ip";
         this.description = "IP address information.";
         this.component = Title_lists;
+        this.help_component = Title_lists;
     }
 
     async execute(input_text) {
         const address = this.filter_input_text(input_text);
         const data = await this.request_data(address);
         const filtered_data = this.filter_json_data(data);
-        return [this.name, this.description, filtered_data];
+        return {
+            data: [this.name, this.description, filtered_data],
+            component: this.component,
+        };
     }
 
     filter_input_text(text) {
@@ -40,9 +44,11 @@ class IP_class {
         return data_array;
     }
 
-    help() {
-        const help_text = this.description;
-        return help_text;
+    help(subcommand = "") {
+        return {
+            data: ["ip", this.description, [";ip"]],
+            component: this.help_component,
+        };
     }
 }
 
