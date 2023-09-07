@@ -85,7 +85,7 @@ input:focus
     display: flex;
     flex-flow: column;
     justify-content: space-between;
-    height: 100vh;
+    height: 100dvh;
 }
 
 .history
