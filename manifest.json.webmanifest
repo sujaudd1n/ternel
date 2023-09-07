@@ -2,7 +2,7 @@
     "name": "Ternel",
     "icons": [
         {
-            "src": "../assets/favicon.svg",
+            "src": "../assets/favicon.png",
             "type": "image/svg+xml",
             "sizes": "144x144"
         }
