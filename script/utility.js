@@ -16,15 +16,15 @@ class User {
     async append_node(node) {
         const content = this.create_environment();
         if (typeof node === "string") node = document.createTextNode(node);
-        console.log(typeof node);
-        await animateNode.char(content, node);
+        await animateNode.text(content, node);
         //content.append(node);
         return content;
     }
 
     async replace_node(container, node) {
         container.textContent = "";
-        await animateNode.char(container, node);
+        if (typeof node === "string") node = document.createTextNode(node);
+        await animateNode.text(container, node);
         //container.append(node);
         return container;
     }

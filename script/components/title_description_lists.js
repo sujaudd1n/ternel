@@ -11,9 +11,10 @@ const Title_lists = {
 
     get_element(title, descripion, list_items) {
         const list_elements = [];
+        console.log(list_items)
         for (let list of list_items) {
             list_elements.push(
-                create_element("li", list, { class: `${list_css_identifier}` })
+                create_element("li", [list], { class: `${list_css_identifier}` })
             );
         }
         const title_element = create_element("h2", [title], {
