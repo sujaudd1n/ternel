@@ -3,7 +3,7 @@ body
     background-color: var(--bg);
     color: var(--text);
     font-family: monospace;
-    min-height: 100vh;
+    height: 100vh;
     font-size: 18px;
     overflow: hidden;
 }
@@ -89,7 +89,7 @@ input:focus
 {
     display: flex;
     flex-flow: column;
-    height: calc(100vh);
+    height: 100vh;
 }
 
 .history
