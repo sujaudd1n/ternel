@@ -38,6 +38,7 @@ const Settings = {
         if (!localStorage.getItem("theme"))
             localStorage.setItem("theme", "dark");
         Change_theme.execute(localStorage.getItem("theme"));
+        document.querySelector(".dfdt").textContent = new Date().toLocaleTimeString();
     },
 
     execute(command) {
