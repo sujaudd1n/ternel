@@ -67,12 +67,6 @@ img
     left: 10px;
 }
 
-.command__form input
-{
-    display: block;
-    height: inherit;
-}
-
 input:focus
 {
     outline: none;
@@ -89,12 +83,12 @@ input:focus
 {
     display: flex;
     flex-flow: column;
+    justify-content: space-between;
     height: 100vh;
 }
 
 .history
 {
-    margin-bottom: auto;
     overflow: auto;
 }
 
