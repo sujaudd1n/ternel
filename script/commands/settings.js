@@ -13,7 +13,10 @@ const Change_theme = {
             throw new Error(`Theme ${theme} not found.`);
         localStorage.setItem("theme", theme);
         document.body.classList = localStorage.getItem("theme");
-        return ["Theme changed.", "Current theme is " + theme];
+        return {
+            data: ["Theme changed.", "Current theme is " + theme],
+            component: this.component,
+        };
     },
     help(subcommand = "") {
         return {
@@ -35,7 +38,6 @@ const Settings = {
         if (!localStorage.getItem("theme"))
             localStorage.setItem("theme", "dark");
         Change_theme.execute(localStorage.getItem("theme"));
-        
     },
 
     execute(command) {
