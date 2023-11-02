@@ -1,4 +1,4 @@
-import { create_element } from "./create_element.js";
+import { create_element } from "../../cdk/create_element.js"
 
 const description_css_identifier = "lists-element__description";
 const title_css_identifier = "lists-element__title";

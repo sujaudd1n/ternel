@@ -1,5 +1,5 @@
 import { animateNode } from "./animateNode.js";
-import { ALL_COMMANDS } from "./commands/helper.js";
+import { ALL_COMMANDS } from "./helper.js";
 
 class User {
     constructor(name) {

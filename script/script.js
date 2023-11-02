@@ -1,7 +1,7 @@
 import { Bot, User } from "./utility.js";
 
-import { Settings } from "./commands/settings.js";
-import { Message } from "./components/message.js";
+import { Settings } from "../commands/setting/settings.js";
+import { Message } from "../cdk/components/message.js"
 
 const form = document.querySelector(".command__form");
 const input = document.querySelector("#command__text");

@@ -1,7 +1,7 @@
-import { create_element } from "./create_element.js";
-import { Lists } from "./lists.js";
+import { create_element } from "../../cdk/create_element.js";
+import { Lists } from "../../cdk/components/lists.js"
 
-class Password_help_class {
+class Help_view {
     constructor() {
         this.name = "paragraph";
         this.description = "A paragraph of texts.";
@@ -21,6 +21,6 @@ class Password_help_class {
     }
 }
 
-const Password_help = new Password_help_class();
+const help_view = new Help_view();
 
-export { Password_help };
+export { help_view };
