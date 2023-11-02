@@ -1,21 +1,19 @@
-import { arg } from "../arg/index.js";
-
-import { Title_lists } from "../components/title_description_lists.js";
-import { Password_help } from "../components/password_help.js";
+import { arg } from "../../script/arg/index.js";
+import { data_view } from "./data_view.js";
+import { help_view } from "./help_view.js";
 
 /**
  * Class representing password command.
  */
 class Password_class {
-
     constructor() {
         this.name = "pass";
         this.description = "Password generator";
         this.SYMBOL_FLAG = "-s";
         this.LENGTH_FLAG = "-l";
         this.QUANTITY_FLAG = "-q";
-        this.component = Title_lists;
-        this.help_component = Password_help;
+        this.component = data_view;
+        this.help_component = help_view;
     }
 
     /**
@@ -47,6 +45,8 @@ class Password_class {
         let url = "https://makemeapassword.ligos.net/api/v1/alphanumeric/json?";
         if (this.SYMBOL_FLAG in options) url += "sym=true&";
         if (this.LENGTH_FLAG in options) url += `l=${options["-l"]}&`;
+        else url += `l=12&`;
+
         if (this.QUANTITY_FLAG in options) url += `c=${options["-q"]}&`;
         return url;
     }

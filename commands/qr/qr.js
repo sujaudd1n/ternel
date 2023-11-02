@@ -1,5 +1,5 @@
-import { Image } from "../components/image.js";
-import { Title_lists } from "../components/title_description_lists.js";
+import { Image } from "../../cdk/components/image.js"
+import { Title_lists } from "../../cdk/components/title_description_lists.js"
 
 class QR_class {
     constructor() {

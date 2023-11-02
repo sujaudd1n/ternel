@@ -1,6 +1,6 @@
-import { Title_lists } from "../components/title_description_lists.js";
+import { Title_lists } from "../password/data_view.js";
 import { Message } from "../components/message.js";
-import { ALL_COMMANDS } from "./helper.js";
+import { ALL_COMMANDS } from "../../script/helper.js";
 
 /**
  * Representing help command.

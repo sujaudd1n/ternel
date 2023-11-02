@@ -1,4 +1,4 @@
-import { Title_lists } from "../components/title_description_lists.js";
+import { Title_lists } from "../password/data_view.js";
 
 class IP_class {
     constructor() {

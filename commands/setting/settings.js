@@ -1,4 +1,4 @@
-import { Message } from "../components/message.js";
+import { Message } from "../../cdk/components/message.js"
 
 const Change_theme = {
     name: "ct",

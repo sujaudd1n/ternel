@@ -1,4 +1,5 @@
-import { create_element } from "./create_element.js";
+import { create_element } from "../../cdk/create_element.js"
+
 
 const Message = {
     name: "message",
