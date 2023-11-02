@@ -63,10 +63,7 @@ class Bot extends User {
 
         const command = this.get_command(first_word);
         const command_info = await command.execute(input_text);
-        return {
-            data: command_info["data"],
-            component: command_info["component"],
-        };
+        return command_info;
     }
     /**
      *
