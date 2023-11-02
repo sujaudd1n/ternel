@@ -1,7 +1,7 @@
 import { Bot, User } from "./utility.js";
 
 import { Settings } from "../commands/setting/settings.js";
-import { Message } from "../cdk/components/message.js"
+import { Message } from "../cdk/components/message.js";
 
 const form = document.querySelector(".command__form");
 const input = document.querySelector("#command__text");
@@ -12,7 +12,7 @@ Settings.initialize();
 const su = new User("su");
 const ternel = new Bot("Ternel");
 ternel.append_node(
-    Message.get_element("Hello", "I'm ternel. How can I help you?")
+    Message.get_element("Hello.", "I'm ternel. Please type <code class='ternel-command-name'>.help</code> to see available commands.")
 );
 Object.assign(globalThis, { ternel });
 
@@ -36,11 +36,12 @@ async function manage_command(e) {
 
     su.append_node(input_text);
 
-    if (input_text.startsWith(";")) {
+    if (input_text.startsWith(".")) {
         const wait_element = Message.get_element(
             "Please Wait.",
             `Data for ${input_text} is being fetched.`
         );
+
         const parent_node = await ternel.append_node(wait_element);
         ternel.scroll();
 
@@ -52,13 +53,15 @@ async function manage_command(e) {
             return;
         }
         console.log(command_info);
-        if (command_info["component"]) {
-            console.log(command_info);
-            const element = command_info["component"].get_element(
-                ...command_info["data"]
-            );
-            await ternel.replace_node(parent_node, element);
-        }
+
+        // if (command_info["component"]) {
+        // console.log(command_info);
+        // const element = command_info["component"].get_element(
+        // ...command_info["data"]
+        // );
+        //await ternel.replace_node(parent_node, element);
+        // }
+        await ternel.replace_node(parent_node, command_info);
     }
 
     ternel.scroll();

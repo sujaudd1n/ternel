@@ -35,10 +35,15 @@ class Password_class {
         const url = this.generate_url(args);
         const password_list = await this.request_password(url);
 
-        return {
-            data: ["Password", command, password_list],
-            component: this.component,
-        };
+        // return {
+        // data: ["Password", command, password_list],
+        // component: this.component,
+        // };
+        return this.component.get_element(
+            command,
+            password_list,
+            "Password Generator"
+        );
     }
 
     generate_url(options) {
