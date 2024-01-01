@@ -1,6 +1,8 @@
 cp -r assets public/assets
 cp -r style public/style
 cp -r script public/script
+cp -r cdk public/cdk
+cp -r commands public/commands
 
 cp index.html public/index.html
 

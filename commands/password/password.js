@@ -1,4 +1,4 @@
-import { arg } from "../../script/arg/index.js";
+import { arg } from "./arg.js";
 import { data_view } from "./data_view.js";
 import { help_view } from "./help_view.js";
 
@@ -77,10 +77,12 @@ class Password_class {
             "-q {int} specifies quantity of password.",
             "-s {bool} specifies if symbols is included or not.",
         ];
-        return {
-            data: [this.name, this.description, usage, options],
-            component: this.help_component,
-        };
+        return this.help_component.get_element(
+            this.name,
+            this.description,
+            usage,
+            options
+        );
     }
 }
 

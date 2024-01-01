@@ -1,5 +1,7 @@
 import { animateNode } from "./animateNode.js";
-import { ALL_COMMANDS } from "./commands/helper.js";
+import { ALL_COMMANDS } from "./helper.js";
+
+const invoke = window.__TAURI__.invoke;
 
 class User {
     constructor(name) {
@@ -59,14 +61,18 @@ class Bot extends User {
      * @returns {data: data, component: component}
      */
     async execute_command(input_text) {
-        const first_word = input_text.split(" ")[0].slice(1);
+        const first_word = input_text.split(" ")[0];
+
+        const command_array = input_text.slice(1).split(" ");
+        const d = await invoke("sh_execute", { c: input_text });
+        const pre = document.createElement("pre");
+        pre.textContent = d;
+        console.log(pre);
+        return pre;
 
         const command = this.get_command(first_word);
         const command_info = await command.execute(input_text);
-        return {
-            data: command_info["data"],
-            component: command_info["component"],
-        };
+        return command_info;
     }
     /**
      *

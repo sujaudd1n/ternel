@@ -21,7 +21,6 @@ input
     display: block;
     width: 100%;
     padding: 8px 10px;
-    padding-left: 40px;
     height: inherit;
 }
 
@@ -56,16 +55,17 @@ img
 {
     position: relative;
     height: inherit;
+    padding-left: 30px;
 }
 
 .command__form::before
 {
-    content: ">>";
+    content: "$";
     display: block;
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    left: 10px;
+    left: 15px;
 }
 
 input:focus

@@ -1,4 +1,5 @@
-import { create_element } from "./create_element.js";
+import { create_element } from "../../cdk/create_element.js"
+
 
 const Message = {
     name: "message",
@@ -6,7 +7,8 @@ const Message = {
 
     get_element(title, message) {
         const title_element = create_element("h2", [title]);
-        const message_element = create_element("p", [message]);
+        const message_element = create_element("p", []);
+        message_element.innerHTML = message;
         const container = create_element("div", [
             title_element,
             message_element,
