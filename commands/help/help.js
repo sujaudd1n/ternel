@@ -1,5 +1,5 @@
-import { Title_lists } from "../password/data_view.js";
-import { Message } from "../components/message.js";
+import { Title_lists } from "./data_view.js";
+import { Message } from "./message.js";
 import { ALL_COMMANDS } from "../../script/helper.js";
 
 /**
@@ -24,7 +24,7 @@ class Help_class {
                 if (command.name === command_name)
                     return command.help(subcommand_name);
             }
-            throw new Error("Command not found.")
+            throw new Error("Command not found.");
         }
     }
 
@@ -37,10 +37,11 @@ class Help_class {
                 )
             );
         }
-        return {
-            data: ["Help", "Usage guide.", help_text_list],
-            component: this.component,
-        };
+        return this.component.get_element(
+            "Help",
+            help_text_list,
+            "Usage guide."
+        );
     }
 
     help(sub_command = "") {

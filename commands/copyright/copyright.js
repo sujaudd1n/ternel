@@ -1,5 +1,6 @@
-import { Message } from "../components/message.js";
-import { Paragraph } from "../components/paragraph.js";
+import { Message } from "../../cdk/components/message.js";
+import { Paragraph } from "../../cdk/components/paragraph.js";
+import { create_element } from "../../cdk/create_element.js";
 
 class Copyright_class {
     constructor() {
@@ -26,14 +27,11 @@ class Copyright_class {
             `You should have received a copy of the GNU General Public License
         along with this program.  If not, see <https://www.gnu.org/licenses/>.`,
         ];
-        return { data: [license], component: this.component };
+        return this.component.get_element(license);
     }
 
     help(subcommand = "") {
-        return {
-            data: ["copy", this.description],
-            component: this.help_component,
-        };
+        return create_element("div", ["Copyright information."]);
     }
 }
 

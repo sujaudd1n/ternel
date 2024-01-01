@@ -1,5 +1,7 @@
 {
+    
   "build": {
+      "withGlobalTauri": true,
     "beforeBuildCommand": "",
     "beforeDevCommand": "",
     "devPath": "../public",
@@ -11,13 +13,24 @@
   },
   "tauri": {
     "allowlist": {
+        "shell": {
+            "all": true,
+            "execute": true,
+            "sidecar": true,
+            "open": true,
+"scope": [
+        {
+            "name": "Bun",
+            "cmd": "Bun"
+        }
+    ]
+        },
       "all": false
     },
     "bundle": {
       "active": true,
       "category": "DeveloperTool",
       "copyright": "Sujauddin",
-      "license": "GPL-3.0",
       "deb": {
         "depends": []
       },
