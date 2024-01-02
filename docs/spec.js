@@ -18,18 +18,17 @@ class Command {
      *
      * @param {string} subcommand name of sub commmand.
      * @throws Throws an error if subcommand is not found.
-     * @returns Object with two properties data, and component. Component is
-     * used to create element for data.
+     * @returns HTMLElement
+     * 
      */
     help(subcommand = "") {}
 
     /**
-     * It does all the things that need to done and returns the data.
+     * It does all the things that need to done and returns HTMLElement
      *
-     * @param {string} command given by the user including ;<command_name>
-     * example - ;help pass
-     * @returns Object with two properties, data and component. Component is
-     * used to create element for data.
+     * @param {string} command given by the user including <command_name>
+     * example - help pass
+     * @returns HTMLElement
      *
      */
     execute(command) {}

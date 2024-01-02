@@ -8,11 +8,12 @@ class User {
     }
 
     /**
-     * 
+     *
      * @returns content div
      */
     create_environment() {
-        const block = DOMF.append_history_block();
+        const block = DOMF.get_history_block();
+        document.querySelector(".history").append(block[0]);
         const title = block[1].children[0];
         title.textContent = this.name;
         return block[2];
@@ -34,27 +35,6 @@ class User {
         return container;
     }
 
-    write_name(target) {
-        target.textContent = this.name;
-    }
-
-    async write(texts) {
-        /*
-     texts: an array of texts.
-    */
-        const content = this.create_environment();
-        for (let text of texts) {
-            const para = DOMF.get_element("p", [], {
-                class: "history__text",
-            });
-            content.append(para);
-            for (let char of text) {
-                para.append(char);
-                await new Promise((res) => setTimeout(res, 10));
-                //mv
-            }
-        }
-    }
     /**
      *
      * @param {string} input_text - entire commmand given by the user.
@@ -91,26 +71,8 @@ class User {
     }
 }
 
-export { User };
-
 const DOMF = {
-    get_element(name = "div", contents = [], attributes = {}) {
-        const elm = document.createElement(name);
-        for (let attr in attributes) {
-            elm.setAttribute(attr, attributes[attr]);
-        }
-        for (let content of contents) elm.append(content);
-        return elm;
-    },
-
-    append_history_block() {
-        const history_block = this.get_history_block();
-        document.querySelector(".history").append(history_block[0]);
-        return history_block;
-    },
-
     get_history_block() {
-
         const user = create_element("p", [], {
             class: "history__user",
         });
@@ -127,19 +89,16 @@ const DOMF = {
             class: "history__content",
         });
 
-        const history_block = create_element("div", [], {
-            class: "history__block",
-        });
-
-        history_block.append(history_title);
-        history_block.append(history_content);
+        const history_block = create_element(
+            "div",
+            [history_title, history_content],
+            {
+                class: "history__block",
+            }
+        );
 
         return [history_block, history_title, history_content];
     },
-
-    history_scroll() {
-        const history = document.querySelector(".history");
-        const sh = history.scrollHeight;
-        history.scroll(0, sh);
-    },
 };
+
+export { User };

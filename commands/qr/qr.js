@@ -1,5 +1,5 @@
-import { Image } from "../../cdk/components/image.js"
-import { Title_lists } from "../../cdk/components/title_description_lists.js"
+import { Image } from "./image.js";
+import { Title_lists } from "./title_description_lists.js";
 
 class QR_class {
     constructor() {
@@ -13,7 +13,7 @@ class QR_class {
         const query = this.filter_input_data(input_text);
         const qr_image_url = await this.request_data(query);
 
-        return { data: [qr_image_url], component: this.component };
+        return this.component.get_element(qr_image_url);
     }
 
     /**
@@ -48,10 +48,9 @@ class QR_class {
      * @returns {string} a help text for user.
      */
     help() {
-        return {
-            data: ["qr", this.descriptions, [";qr <text>"]],
-            component: this.help_component,
-        };
+        return this.help_component.get_element("qr", this.description, [
+            ";qr <text>",
+        ]);
     }
 }
 
