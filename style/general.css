@@ -98,29 +98,25 @@ input:focus
     margin: 10px 0;
     max-height: 1000px;
     overflow: auto;
+    padding: 0 10px;
 }
 
 .history__block:hover
 {
-    background-color: var(--bg-light);
+    background-color: var(--bg-light-tp);
 }
 
 .history__title
 {
     display: flex;
     justify-content: space-between;
-    padding: 0 10px;
+    padding: 10px 0;
     position: sticky;
     top: 0;
     left: 0;
     right: 0;
     background-color: var(--bg);
     height: 40px;
-}
-
-.history__block:hover .history__title
-{
-    background-color: var(--bg-light);
 }
 
 .history__user
@@ -130,7 +126,7 @@ input:focus
 
 .history__content
 {
-    padding: 8px 10px;
+    padding: 10px 0;
 }
 
 
