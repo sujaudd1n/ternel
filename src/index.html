@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="A terminal-like application.">
+    <title>Ternel</title>
+
+    <link rel="icon" href="./assets/favicon.png" type="image/png" />
+    <link rel="stylesheet" href="./style/normalize.css" />
+    <link rel="stylesheet" href="./style/general.css" />
+    <link rel="stylesheet" href="./style/theme.css" />
+    <link rel="stylesheet" href="./style/c.css" />
+
+    <link rel="manifest" href="./manifest.json.webmanifest" />
+
+    <script src="./script/script.js" type="module" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js" defer></script>
+    <script src="./script/hackish.js" defer></script>
+    <script src="./script/pwa.js" defer></script>
+</head>
+
+<body class="dark" id="body">
+    <header class="header">
+        <h1 class="header__title">Ternel</h1>
+    </header>
+    <main class="main">
+        <div class="history"></div>
+        <div class="command">
+            <form class="command__form">
+                <input type="text" name="command" id="command__text" placeholder="Press / to focus here." required
+                    autofocus autocomplete="off" />
+            </form>
+        </div>
+    </main>
+</body>
+
+</html>

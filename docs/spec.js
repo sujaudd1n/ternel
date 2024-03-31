@@ -7,10 +7,10 @@ class Command {
     constructor() {
         this.name = "command";
         this.description = "Description for the command.";
-        // component that will be used to render it's data.
-        this.component = Title_lists;
-        // component that will be used to render it's help data (user guide).
-        this.help_component = Password_help;
+        // ui that will be used to render it's data.
+        this.ui = Title_lists;
+        // ui that will be used to render it's help data (user guide).
+        this.help_ui = Password_help;
     }
     /**
      * Manages help text (user guide) for a command. if subcommand exists,

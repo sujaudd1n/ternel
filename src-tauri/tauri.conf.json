@@ -4,8 +4,8 @@
       "withGlobalTauri": true,
     "beforeBuildCommand": "",
     "beforeDevCommand": "",
-    "devPath": "../public",
-    "distDir": "../public"
+    "devPath": "../src",
+    "distDir": "../src"
   },
   "package": {
     "productName": "Ternel",
