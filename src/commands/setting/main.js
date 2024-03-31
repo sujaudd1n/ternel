@@ -1,10 +1,10 @@
-import { Message } from "../../cdk/uis/message.js"
+import { message_ui } from "./ui.js"
 
 const Change_theme = {
     name: "ct",
     description: "Change theme of ternel.",
-    ui: Message,
-    help_ui: Message,
+    ui: message_ui,
+    help_ui: message_ui,
 
     themes: ["dark", "light", "red", "blue", "green"],
 
@@ -13,10 +13,7 @@ const Change_theme = {
             throw new Error(`Theme ${theme} not found.`);
         localStorage.setItem("theme", theme);
         document.body.classList = localStorage.getItem("theme");
-        return {
-            data: ["Theme changed.", "Current theme is " + theme],
-            ui: this.ui,
-        };
+        return this.ui.get_element("Success")
     },
     help(subcommand = "") {
         return {
@@ -32,7 +29,7 @@ const Settings = {
     name: "set",
     description: "Settings for ternel.",
     available_settings: [Change_theme],
-    ui: Message,
+    ui: message_ui,
 
     initialize() {
         if (!localStorage.getItem("theme"))
@@ -43,17 +40,21 @@ const Settings = {
 
     execute(command) {
         const [key, value] = this.filter_input_text(command);
+        console.log(key, value,'in settings')
 
         for (const c of this.available_settings) {
             if (c.name === key) {
+            console.log('in settings')
                 return this.available_settings[
                     this.available_settings.indexOf(c)
                 ].execute(value);
             }
         }
+        throw new Error("subcommand not found.")
     },
 
     filter_input_text(text) {
+        console.log(text)
         const arguements_list = text.split(" ");
         if (arguements_list.length != 3)
             throw new Error("Wrong number of arguments.");
@@ -77,4 +78,5 @@ const Settings = {
     },
 };
 
-export { Settings };
+const settings = Settings;
+export { settings };

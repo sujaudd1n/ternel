@@ -1,6 +1,6 @@
 import { su, ternel } from "./utility.js";
 
-import { Settings } from "../commands/setting/settings.js";
+import { settings } from "../commands/setting/main.js";
 import { ternel_intro } from "../commands/intro/index.js";
 import { message } from "../commands/message/main.js";
 
@@ -10,12 +10,13 @@ const input_widget = document.querySelector("#command__text");
 const history = document.querySelector(".history");
 
 
-Settings.initialize();
+settings.initialize();
 
 
+for (let i = 0; i < 5; ++i)
 ternel.append_node(ternel_intro.execute())
 ternel.append_node(
-    message.execute(
+    message.get_element(
         "This is a message box.",
         "Title",
     )
@@ -36,7 +37,7 @@ async function manage_command(e) {
     su.append_node(input_text);
 
     if (true) {
-        const wait_element = message.execute(
+        const wait_element = message.get_element(
             `Data for ${input_text} is being fetched.`,
             "Please Wait.",
         );
@@ -49,10 +50,10 @@ async function manage_command(e) {
             command_info = await ternel.execute_command(input_text);
             await ternel.replace_node(parent_node, command_info);
         } catch (e) {
-            e.name = "command_not_found_error";
+            console.log(e)
             await ternel.replace_node(
                 parent_node,
-                message.execute(e, "Error 404", "error")
+                message.get_element(e.toString(), "Error", "error")
             );
         }
     }

@@ -13,7 +13,7 @@ class User {
      */
     create_environment() {
         const block = DOMF.get_history_block();
-        document.querySelector(".history").append(block[0]);
+        document.querySelector(".whitespace").insertAdjacentElement("beforebegin", block[0]);
         const title = block[1].children[0];
         title.textContent = this.name;
         return block[2];
@@ -30,6 +30,7 @@ class User {
     async replace_node(container, node) {
         container.textContent = "";
         if (typeof node === "string") node = document.createTextNode(node);
+        console.log(node)
         await animateNode.text(container, node);
         //container.append(node);
         return container;
@@ -54,7 +55,8 @@ class User {
      */
     get_command(command_name) {
         for (let command of ALL_COMMANDS) {
-            if (command.name === command_name) return command;
+            if (command.name === command_name)
+                return command;
         }
         throw new Error(`${command_name}: command not found.`);
     }
@@ -78,7 +80,9 @@ const DOMF = {
             class: "history__user",
         });
 
-        const time = create_element("time", [new Date().toLocaleTimeString()], {
+        const time = create_element("time", [new Date().toLocaleTimeString([], {
+            hour: '2-digit', minute: '2-digit'
+        })], {
             datetime: new Date().toLocaleTimeString(),
         });
 
@@ -97,6 +101,48 @@ const DOMF = {
                 class: "history__block",
             }
         );
+
+        const styles = `
+        .history {
+            overflow: auto;
+        }
+        .whitespace
+        {
+            height: 70px;
+        }
+        
+        .history__block {
+            margin: 20px 0;
+            max-height: 80dvh;
+            overflow: auto;
+            padding: 0 10px;
+        }
+        
+        .history__block:hover {
+            background-color: var(--bg-light-tp);
+        }
+        
+        .history__title {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            position: sticky;
+            top: 0;
+            left: 0;
+            right: 0;
+            background-color: var(--bg);
+            height: 40px;
+        }
+        
+        .history__user {
+            color: var(--user);
+        }
+        
+        .history__content {
+            padding: 10px 0;
+        }
+        `;
+        document.head.appendChild(create_element('style', [styles]))
 
         return [history_block, history_title, history_content];
     },
