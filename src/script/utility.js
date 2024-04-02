@@ -116,8 +116,6 @@ const DOMF = {
         
         .history__block {
             margin: 20px 0;
-            max-height: 80dvh;
-            overflow: auto;
             padding: 0 10px;
         }
         
@@ -143,6 +141,8 @@ const DOMF = {
         
         .history__content {
             padding: 10px 0;
+            max-height: 80dvh;
+            overflow: auto;
         }
         `;
         document.head.appendChild(create_element('style', [styles]))

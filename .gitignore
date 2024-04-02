@@ -4,3 +4,5 @@ info.md
 out
 desktop_app
 public/*
+docs/.vitepress/dist
+docs/.vitepress/cache

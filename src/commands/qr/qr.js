@@ -1,3 +1,4 @@
+import { ternel } from "../../script/utility.js";
 import { Image } from "./image.js";
 import { Title_lists } from "./title_description_lists.js";
 
@@ -13,7 +14,11 @@ class QR_class {
         const query = this.filter_input_data(input_text);
         const qr_image_url = await this.request_data(query);
 
-        return this.ui.get_element(qr_image_url);
+        const image_element = this.ui.get_element(qr_image_url);
+        image_element.addEventListener("load", () => {
+            ternel.scroll()
+        })
+        return image_element;
     }
 
     /**
