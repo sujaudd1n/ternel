@@ -18,7 +18,6 @@ p {
 
 input {
     border: none;
-    border-top: 2px solid var(--bg-light);
     background-color: transparent;
     display: block;
     width: 100%;

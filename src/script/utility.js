@@ -3,8 +3,9 @@ import { ALL_COMMANDS } from "./helper.js";
 import { create_element } from "./create_element.js";
 
 class User {
-    constructor(name) {
+    constructor(name, icon_url = null) {
         this.name = name;
+        this.icon_url = icon_url;
     }
 
     /**
@@ -16,6 +17,7 @@ class User {
         document.querySelector(".whitespace").insertAdjacentElement("beforebegin", block[0]);
         const title = block[1].children[0];
         title.textContent = this.name;
+        title.style.backgroundImage = `url(${this.icon_url})`;
         return block[2];
     }
 
@@ -76,6 +78,7 @@ class User {
 
 const DOMF = {
     get_history_block() {
+
         const user = create_element("p", [], {
             class: "history__user",
         });
@@ -118,24 +121,24 @@ const DOMF = {
             padding: 0 10px;
         }
         
-        .history__block:hover {
-            background-color: var(--bg-light-tp);
-        }
-        
         .history__title {
             display: flex;
             justify-content: space-between;
             padding: 10px 0;
-            position: sticky;
-            top: 0;
-            left: 0;
-            right: 0;
-            background-color: var(--bg);
-            height: 40px;
+            // position: sticky;
+            // top: 0;
+            // left: 0;
+            // right: 0;
+            // background-color: var(--bg);
+            // height: 40px;
         }
         
         .history__user {
             color: var(--user);
+            background-repeat: no-repeat;
+            padding-left: 27px;
+            background-size: 20px;
+            background-position: 0 4px;
         }
         
         .history__content {
@@ -148,7 +151,7 @@ const DOMF = {
     },
 };
 
-const su = new User("su");
-const ternel = new User("ternel");
+const su = new User("su", "../assets/icons/user.svg");
+const ternel = new User("ternel", "../assets/icons/robot.svg");
 
 export { su, ternel };

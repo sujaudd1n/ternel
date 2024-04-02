@@ -8,12 +8,16 @@ import { settings } from "../commands/setting/main.js";
 import { QR } from "../commands/qr/qr.js";
 import { Help } from "../commands/help/help.js";
 import { ternel_intro } from "../commands/intro/index.js";
-import { message } from "../commands/message/main.js";
 /**
  * weather
  * https://cataas.com/
  */
 
-const ALL_COMMANDS = [ternel_intro, Password, Help, Copyright, QR, settings, message]; //, Copyright, Settings, Wiki, Help, Meme, IP, QR];
+const ALL_COMMANDS = [ternel_intro,
+    Password,
+    Help,
+    Copyright,
+    QR,
+    settings]
 
 export { ALL_COMMANDS };

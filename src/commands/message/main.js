@@ -13,7 +13,9 @@ class Message {
         this.help_ui = help_ui;
     }
 
-    execute(command_text) {
+    execute(text, title=null, type="normal") {
+        return this.ui.get_element(text, type, title);
+        /*
         const args = arg(command_text, {
             "--text": String,
             "--title": String,
@@ -21,6 +23,7 @@ class Message {
         })
         console.log(args)
         return this.get_element(args["--text"], args["--title"], args["--type"])
+        */
     }
     get_element(text, title, type) {
         return this.ui.get_element(text, type, title);
