@@ -9,6 +9,7 @@ import { QR } from "../commands/qr/qr.js";
 import { Help } from "../commands/help/help.js";
 import { ternel_intro } from "../commands/intro/index.js";
 import { sys } from "../commands/sys/main.js";
+import { info } from "../commands/info/main.js"
 /**
  * weather
  * https://cataas.com/
@@ -21,6 +22,6 @@ const ALL_COMMANDS = [
     Help,
     Copyright,
     QR,
-    settings]
+    settings, info]
 
 export { ALL_COMMANDS };

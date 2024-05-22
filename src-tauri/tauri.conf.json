@@ -1,7 +1,6 @@
 {
-    
   "build": {
-      "withGlobalTauri": true,
+    "withGlobalTauri": true,
     "beforeBuildCommand": "",
     "beforeDevCommand": "",
     "devPath": "../src",
@@ -13,19 +12,21 @@
   },
   "tauri": {
     "allowlist": {
-        "shell": {
-            "all": true,
-            "execute": true,
-            "sidecar": true,
-            "open": true,
-"scope": [
-        {
+      "shell": {
+        "all": true,
+        "execute": true,
+        "sidecar": true,
+        "open": true,
+        "scope": [
+          {
             "name": "Bun",
             "cmd": "Bun"
-        }
-    ]
-        },
-      "all": false
+          }
+        ]
+      },
+      "app": {
+        "all": true
+      }
     },
     "bundle": {
       "active": true,
